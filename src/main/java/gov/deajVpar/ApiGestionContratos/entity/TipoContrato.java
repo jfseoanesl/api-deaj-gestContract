@@ -43,6 +43,14 @@ public class TipoContrato {
         this.eliminado=false;
     }
 
+    public TipoContrato(Long id, String descripcion, List<Contrato> listContratos, Usuario crateByuser, boolean eliminado) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.listContratos = listContratos;
+        this.crateByuser = crateByuser;
+        this.eliminado = eliminado;
+    }
+
     /**
      * @return the id
      */

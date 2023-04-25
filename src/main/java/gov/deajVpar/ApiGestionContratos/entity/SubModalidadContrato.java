@@ -53,6 +53,16 @@ public class SubModalidadContrato {
         
     }
 
+    public SubModalidadContrato(Long idSubModalidad, String descripcionSubModalidad, String nombreSubModalidad, ModalidadContrato modalidadContrato, List<Contrato> listContratosRegistrados, Usuario createByUser, boolean eliminado) {
+        this.idSubModalidad = idSubModalidad;
+        this.descripcionSubModalidad = descripcionSubModalidad;
+        this.nombreSubModalidad = nombreSubModalidad;
+        this.modalidadContrato = modalidadContrato;
+        this.listContratosRegistrados = listContratosRegistrados;
+        this.createByUser = createByUser;
+        this.eliminado = eliminado;
+    }
+
     /**
      * @return the idSubModalidad
      */

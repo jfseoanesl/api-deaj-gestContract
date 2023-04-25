@@ -32,11 +32,22 @@ public abstract class AvisoAlerta {
     public AvisoAlerta() {
     }
 
-    public AvisoAlerta(int nInformesCheked, int prioridadAlerta, Color color) {
+    public AvisoAlerta(Long id, int nInformesCheked, int prioridadAlerta, Color color, AlertaContrato alerta) {
+        this.id = id;
         this.nInformesCheked = nInformesCheked;
         this.prioridadAlerta = prioridadAlerta;
         this.color = color;
+        this.alerta = alerta;
     }
+
+    public AvisoAlerta(int nInformesCheked, int prioridadAlerta, Color color, AlertaContrato alerta) {
+        this.nInformesCheked = nInformesCheked;
+        this.prioridadAlerta = prioridadAlerta;
+        this.color = color;
+        this.alerta = alerta;
+    }
+
+    
 
     /**
      * @return the id

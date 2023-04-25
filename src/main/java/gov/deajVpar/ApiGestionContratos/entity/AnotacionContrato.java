@@ -11,7 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -19,13 +21,13 @@ import java.time.LocalDate;
  * @author Jairo F
  */
 @Entity
-public class AnotacionContrato {
+public class AnotacionContrato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
     private LocalDate fecha;
-    @NotNull
+    @NotBlank
     private String descripcion;
     @OneToOne
     @JoinColumn(name = "usuario_id")
@@ -34,6 +36,14 @@ public class AnotacionContrato {
     @JoinColumn(name = "contrato_id")
     private Contrato contrato;
 
+    public AnotacionContrato(Long id, LocalDate fecha, String descripcion, Usuario createByUser, Contrato contrato) {
+        this.id = id;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
+        this.createByUser = createByUser;
+        this.contrato = contrato;
+    }
+
     public AnotacionContrato(LocalDate fecha, String descripcion, Usuario createByUser, Contrato contrato) {
         this.fecha = fecha;
         this.descripcion = descripcion;
@@ -41,6 +51,7 @@ public class AnotacionContrato {
         this.contrato = contrato;
     }
 
+  
     
 
     public AnotacionContrato() {

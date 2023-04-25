@@ -6,6 +6,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,20 +30,32 @@ public class RolUsuario {
     
     
     public RolUsuario() {
+        this.listPermisosUsuario = new ArrayList();
     }
 
     public RolUsuario(String nombreRol, Usuario cratedByUser) {
+        this();
         this.nombreRol = nombreRol;
         this.cratedByUser = cratedByUser;
         this.eliminado=false;
     }
 
     public RolUsuario(String nombreRol, List<PermisoUsuario> listPermisosUsuario, Usuario usuario, Usuario cratedByUser) {
+        this();
         this.nombreRol = nombreRol;
         this.listPermisosUsuario = listPermisosUsuario;
         this.usuario = usuario;
         this.cratedByUser = cratedByUser;
         this.eliminado=false;
+    }
+
+    public RolUsuario(Long idRol, String nombreRol, List<PermisoUsuario> listPermisosUsuario, Usuario usuario, Usuario cratedByUser, boolean eliminado) {
+        this.idRol = idRol;
+        this.nombreRol = nombreRol;
+        this.listPermisosUsuario = listPermisosUsuario;
+        this.usuario = usuario;
+        this.cratedByUser = cratedByUser;
+        this.eliminado = eliminado;
     }
 
     /**

@@ -1,5 +1,6 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,9 +19,9 @@ public class LugarEjecucion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idLugarEjecucion;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Dpto dpto;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Ciudad ciudad;
     @NotBlank
     private String direccion;
@@ -32,6 +33,14 @@ public class LugarEjecucion {
     }
 
     public LugarEjecucion(Dpto dpto, Ciudad ciudad, String direccion, Contrato contrato) {
+        this.dpto = dpto;
+        this.ciudad = ciudad;
+        this.direccion = direccion;
+        this.contrato = contrato;
+    }
+
+    public LugarEjecucion(Long idLugarEjecucion, Dpto dpto, Ciudad ciudad, String direccion, Contrato contrato) {
+        this.idLugarEjecucion = idLugarEjecucion;
         this.dpto = dpto;
         this.ciudad = ciudad;
         this.direccion = direccion;

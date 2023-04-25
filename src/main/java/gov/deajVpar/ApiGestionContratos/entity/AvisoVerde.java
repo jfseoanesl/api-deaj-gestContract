@@ -17,8 +17,14 @@ public class AvisoVerde extends AvisoAlerta {
     public AvisoVerde() {
     }
 
-    public AvisoVerde(int nInformesCheked, int prioridadAlerta, Color color) {
-        super(nInformesCheked, prioridadAlerta, color);
+    public AvisoVerde(Long id, int nInformesCheked, int prioridadAlerta, Color color, AlertaContrato alerta) {
+        super(id, nInformesCheked, prioridadAlerta, color, alerta);
     }
+
+    public AvisoVerde(int nInformesCheked, int prioridadAlerta, Color color, AlertaContrato alerta) {
+        super(nInformesCheked, prioridadAlerta, color, alerta);
+    }
+
+   
     
 }

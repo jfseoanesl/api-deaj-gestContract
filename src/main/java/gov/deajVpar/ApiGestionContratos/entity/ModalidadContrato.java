@@ -34,6 +34,7 @@ public class ModalidadContrato {
     private boolean eliminado;
 
     public ModalidadContrato() {
+        this.listSubModalidades= new ArrayList();
     }
 
     public ModalidadContrato(String descripcionModalidad, String nombreModalidad, Usuario createByUser) {
@@ -43,6 +44,16 @@ public class ModalidadContrato {
         this.eliminado=false;
         this.listContratosRegistrados= new ArrayList();
         this.listSubModalidades= new ArrayList();
+    }
+
+    public ModalidadContrato(Long idModalidad, String descripcionModalidad, String nombreModalidad, List<Contrato> listContratosRegistrados, Usuario createByUser, boolean eliminado) {
+        this.idModalidad = idModalidad;
+        this.descripcionModalidad = descripcionModalidad;
+        this.nombreModalidad = nombreModalidad;
+        this.listContratosRegistrados = listContratosRegistrados;
+        this.createByUser = createByUser;
+        this.listSubModalidades= new ArrayList();
+        this.eliminado = eliminado;
     }
 
     /**

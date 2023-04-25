@@ -1,6 +1,7 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.*;
 
@@ -10,10 +11,10 @@ import java.time.*;
  */
 @Entity
 public class PersonaNatural extends Persona {
-    @NotNull
+    @NotBlank
     private String pNombre;
     private String sNombre;
-    @NotNull
+    @NotBlank
     private String pApellido;
     private String sApellido;
     @NotNull

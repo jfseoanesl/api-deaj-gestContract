@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -19,11 +21,11 @@ import java.time.LocalDateTime;
  * @author Jairo F
  */
 @Entity
-public class AlertaContrato {
+public class AlertaContrato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
+    @NotNull
     private LocalDateTime fechaRegistro;
     private boolean estado;  // true: actual   false: vieja
     @OneToOne
@@ -36,11 +38,22 @@ public class AlertaContrato {
     public AlertaContrato() {
     }
 
-    public AlertaContrato(LocalDateTime fechaRegistro, AvisoAlerta aviso, Contrato contrato) {
+    public AlertaContrato(Long id, LocalDateTime fechaRegistro, boolean estado, AvisoAlerta aviso, Contrato contrato) {
+        this.id = id;
         this.fechaRegistro = fechaRegistro;
+        this.estado = estado;
         this.aviso = aviso;
         this.contrato = contrato;
     }
+
+    public AlertaContrato(LocalDateTime fechaRegistro, boolean estado, AvisoAlerta aviso, Contrato contrato) {
+        this.fechaRegistro = fechaRegistro;
+        this.estado = estado;
+        this.aviso = aviso;
+        this.contrato = contrato;
+    }
+
+    
 
     /**
      * @return the id

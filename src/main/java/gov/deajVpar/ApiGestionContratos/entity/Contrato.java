@@ -1,5 +1,6 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +12,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +24,7 @@ import java.util.List;
  * @author Jairo F
  */
 @Entity
-public class Contrato {
+public class Contrato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idContrato;
@@ -34,15 +38,15 @@ public class Contrato {
     private int aFinVigencia;
     @Column
     private String noContrato;
-    @NotBlank
+    @NotNull
     private EstadoContrato estadoContrato;
-    @NotBlank
+    @NotNull
     private EtapaContractual etapaContrato;
     @NotBlank
     private String objetoContrato;
-    @NotBlank
+    @NotNull
     private LocalDate fechaInicioEjecucion;
-    @NotBlank
+    @NotNull
     private LocalDate fechaFinEjecucion;
     @Min(1)
     private int duracionContrato; // meses
@@ -63,16 +67,16 @@ public class Contrato {
     private LocalDate fechaPublicacionSecop;
     private LocalDate fechaAperturaProceso;
     private LocalDate fechaCierreProceso;
-    @NotBlank
+    @NotNull
     private LocalDate fechaSuscripcionContrato;
     private LocalDate fechaAdjudicacionContrato;
-    @NotBlank
+    @NotNull
     private LocalDate fechaTerminacionContrato;
     private LocalDate fechaLiquidacionContrato;
     private LocalDate fechaDesignacionInterventor;
     private LocalDate fechaCierreContrato;
     
-    @OneToMany(mappedBy = "contrato")
+    @OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL)
     private List<LugarEjecucion> lugarEjecucion;
     @ManyToOne
     @JoinColumn(name = "contratista_id")
@@ -92,14 +96,16 @@ public class Contrato {
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private UsuarioSupervisor supervisor;
-    @OneToMany(mappedBy = "contrato")
+    @OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL)
     private List<InformeSupervisor> listInformesSupervicion;
     @OneToMany(mappedBy = "contrato")
     private List<AlertaContrato> listHistoricoAlertas;
     @OneToMany(mappedBy = "contrato")
     private List<AnotacionContrato> listAnotacionesContrato;
-
+    private boolean eliminado;
+    
     public Contrato() {
+        this.eliminado=false;
         DireccionSeccional direccion = new DireccionSeccional("Direccion seccional de valledupar", new UsuarioAdministrador());
         
         RolUsuario rol = new RolUsuario("Administradot", new UsuarioAdministrador());
@@ -118,7 +124,7 @@ public class Contrato {
         this.objetoContrato="Contratar en nombre de la nacion y del consejo superior de la judicatura"
                             +" el arrendamiento de oficinas del edificio torre premiun de valledupar" ;
         this.fechaInicioEjecucion= LocalDate.of(2018, Month.NOVEMBER, 1);
-        this.fechaFinEjecucion=LocalDate.of(2019, Month.OCTOBER, 31);;
+        this.fechaFinEjecucion=LocalDate.of(2019, Month.OCTOBER, 31);
         this.duracionContrato=12;
         this.cuantiaInicialContrato=418300000;
         this.cuantiaFinalContrato=418300000;
@@ -126,14 +132,14 @@ public class Contrato {
         this.pEjecucionFisica=0;
         this.fechaInicioProceso=LocalDate.of(2018, Month.OCTOBER, 30);
         
-        this.enlaceSecop="https://www.contratos.gov.co/consultas/detalleProceso.do?numConstancia=18-12-8720063&g-recaptcha-response=03AL8dmw9r2dgWI4k9bkLVNvOUHon9ajY9n6M48vOWqOFuhFPXpxk7Ri7YVQuR9BKJ0a0QcBqWy9-U2uVvuPC0oqQZVhTS6pLxSh1KBS54_Ou7PSxdjbnyVNNEdnimZsmNatS1t0o2YCNVyc5kY5RcnforhBlx6OULjdp_PctbiDfp5TuMGhKI8g4FM2S6YtaPHa8SgbArtrSYp50LxvvUZQWXXcLxS5jsWnSslI6pSA7M72q8A--n5bBH4ukNQP91o8J6ttUlnmzT6mMCHyFDG0IKY487N03JiOyfM65fRPw3-UCyQHkkapM54B4z1iiZzPHav7MVBkcP99C7cxB2dUa1CuIigng43KXl022XJnDidfj5xz3I_vlWWwY1MxHFdpO_4GM1KtrxWuNdbW5mXKPXTJaJfMAHFUoVR_TDEhnBTaq-MzjOpM-MR1-RGPGcM5i3BKRHSccDuSIrqM_ES6ikVr3uBE8H-NTKb59gP_PQ4wbnQF39XfNUjN_3ggFVBPS6e75Rmd2OZwyiK4VQK3u7aU-16ICnDHgrZ1NPJTRBge0HetCrJ30";
-        this.enlaceWeb="https://www.contratos.gov.co/consultas/detalleProceso.do?numConstancia=18-12-8720063&g-recaptcha-response=03AL8dmw9r2dgWI4k9bkLVNvOUHon9ajY9n6M48vOWqOFuhFPXpxk7Ri7YVQuR9BKJ0a0QcBqWy9-U2uVvuPC0oqQZVhTS6pLxSh1KBS54_Ou7PSxdjbnyVNNEdnimZsmNatS1t0o2YCNVyc5kY5RcnforhBlx6OULjdp_PctbiDfp5TuMGhKI8g4FM2S6YtaPHa8SgbArtrSYp50LxvvUZQWXXcLxS5jsWnSslI6pSA7M72q8A--n5bBH4ukNQP91o8J6ttUlnmzT6mMCHyFDG0IKY487N03JiOyfM65fRPw3-UCyQHkkapM54B4z1iiZzPHav7MVBkcP99C7cxB2dUa1CuIigng43KXl022XJnDidfj5xz3I_vlWWwY1MxHFdpO_4GM1KtrxWuNdbW5mXKPXTJaJfMAHFUoVR_TDEhnBTaq-MzjOpM-MR1-RGPGcM5i3BKRHSccDuSIrqM_ES6ikVr3uBE8H-NTKb59gP_PQ4wbnQF39XfNUjN_3ggFVBPS6e75Rmd2OZwyiK4VQK3u7aU-16ICnDHgrZ1NPJTRBge0HetCrJ30";
+        this.enlaceSecop="https://www.contratos.gov.co/";
+        this.enlaceWeb="https://www.contratos.gov.co/";
         this.fechaPublicacionSecop=LocalDate.of(2018, Month.OCTOBER, 30);;
         this.fechaAperturaProceso=LocalDate.of(2018, Month.OCTOBER, 30);;
         this.fechaCierreProceso=null;
         this.fechaSuscripcionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
         this.fechaAdjudicacionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
-        this.fechaTerminacionContrato=null;
+        this.fechaTerminacionContrato=LocalDate.of(2019, Month.OCTOBER, 31);
         this.fechaLiquidacionContrato=null;
         this.fechaDesignacionInterventor=null;
         this.fechaCierreContrato=null;
@@ -143,6 +149,7 @@ public class Contrato {
         Ciudad ciudad2 = new Ciudad("200", "La Paz", dpto);
         LugarEjecucion lugar1 = new LugarEjecucion(dpto, ciudad, "Calle 38a #5a-31", this);
         LugarEjecucion lugar2 = new LugarEjecucion(dpto, ciudad, "Edificio caja agraria, calle 16 # 9-44", this);
+        this.lugarEjecucion = new ArrayList();
         this.lugarEjecucion.add(lugar1);
         this.lugarEjecucion.add(lugar2);
         
@@ -154,7 +161,7 @@ public class Contrato {
         SubModalidadContrato subModalidad = new SubModalidadContrato("Subcontratacion", "Sub modalidad", modalidad, new UsuarioJuridica());
         this.modalidad=modalidad;
         this.subModalidad=subModalidad;
-        
+//        
         TipoContrato tipoCOntrato = new TipoContrato("Arrendamiento", new UsuarioJuridica());
         this.tipoContrato=tipoContrato;
     

@@ -37,6 +37,7 @@ public class DireccionSeccional {
     private boolean eliminado;
 
     public DireccionSeccional(String descripcionSeccional, Usuario user) {
+        
         this(descripcionSeccional);
         this.createdByUser=user;
     }
@@ -44,6 +45,19 @@ public class DireccionSeccional {
     public DireccionSeccional(String descripcionSeccional) {
         this();
         this.descripcionSeccional = descripcionSeccional;
+    }
+
+    public DireccionSeccional(Long idDireccion, String descripcionSeccional, List<Usuario> listUsuarios, List<Dpto> listDptoCoordinados, List<Contrato> listContratosSuscritos, List<UsuarioSupervisor> listSupervisoresSeccional, SetupAlertaContrato setupAlertaContrato, Usuario createdByUser, boolean eliminado) {
+        this();
+        this.idDireccion = idDireccion;
+        this.descripcionSeccional = descripcionSeccional;
+        this.listUsuarios = listUsuarios;
+        this.listDptoCoordinados = listDptoCoordinados;
+        this.listContratosSuscritos = listContratosSuscritos;
+        this.listSupervisoresSeccional = listSupervisoresSeccional;
+        this.setupAlertaContrato = setupAlertaContrato;
+        this.createdByUser = createdByUser;
+        this.eliminado = eliminado;
     }
 
     public DireccionSeccional() {

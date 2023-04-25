@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  *
@@ -21,7 +22,7 @@ public class PermisoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
+    @NotNull
     private Modulo modulo;
     private boolean c;
     private boolean u;
@@ -35,6 +36,16 @@ public class PermisoUsuario {
     }
 
     public PermisoUsuario(Modulo modulo, boolean c, boolean u, boolean d, boolean r, RolUsuario rolUsuario) {
+        this.modulo = modulo;
+        this.c = c;
+        this.u = u;
+        this.d = d;
+        this.r = r;
+        this.rolUsuario = rolUsuario;
+    }
+
+    public PermisoUsuario(Long id, Modulo modulo, boolean c, boolean u, boolean d, boolean r, RolUsuario rolUsuario) {
+        this.id = id;
         this.modulo = modulo;
         this.c = c;
         this.u = u;

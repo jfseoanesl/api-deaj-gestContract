@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
@@ -23,7 +24,7 @@ public class InformeSupervisor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
+    @NotNull
     private LocalDate fechaReferencia;
     private LocalDate fechaPresentacion;
     private LocalDate fechaRegistro;
@@ -48,6 +49,32 @@ public class InformeSupervisor {
         this.fechaReferencia = fechaReferencia;
         this.contrato = contrato;
     }
+
+    public InformeSupervisor(LocalDate fechaReferencia, LocalDate fechaPresentacion, LocalDate fechaRegistro, String resumenInforme, boolean estado, Usuario verificatebyUser, LocalDate fechaVerificacion, UsuarioSupervisor supervisor, Contrato contrato) {
+        this.fechaReferencia = fechaReferencia;
+        this.fechaPresentacion = fechaPresentacion;
+        this.fechaRegistro = fechaRegistro;
+        this.resumenInforme = resumenInforme;
+        this.estado = estado;
+        this.verificatebyUser = verificatebyUser;
+        this.fechaVerificacion = fechaVerificacion;
+        this.supervisor = supervisor;
+        this.contrato = contrato;
+    }
+
+    public InformeSupervisor(Long id, LocalDate fechaReferencia, LocalDate fechaPresentacion, LocalDate fechaRegistro, String resumenInforme, boolean estado, Usuario verificatebyUser, LocalDate fechaVerificacion, UsuarioSupervisor supervisor, Contrato contrato) {
+        this.id = id;
+        this.fechaReferencia = fechaReferencia;
+        this.fechaPresentacion = fechaPresentacion;
+        this.fechaRegistro = fechaRegistro;
+        this.resumenInforme = resumenInforme;
+        this.estado = estado;
+        this.verificatebyUser = verificatebyUser;
+        this.fechaVerificacion = fechaVerificacion;
+        this.supervisor = supervisor;
+        this.contrato = contrato;
+    }
+    
 
     /**
      * @return the id

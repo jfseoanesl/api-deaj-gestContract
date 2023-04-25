@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.awt.Color;
 
 /**
@@ -36,11 +37,11 @@ public class SetupAlertaContrato {
     @Min(0)
     private int prioridadVerde;
     
-    @NotBlank
+    @NotNull
     private Color rojoColor;
-    @NotBlank
+    @NotNull
     private Color naranjaColor;
-    @NotBlank
+    @NotNull
     private Color verdeColor;
     
     @OneToOne(mappedBy = "setupAlertaContrato")
@@ -62,6 +63,20 @@ public class SetupAlertaContrato {
     }
 
     public SetupAlertaContrato(int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor, DireccionSeccional direccionSeccional) {
+        this.diasRojo = diasRojo;
+        this.diasNaranja = diasNaranja;
+        this.diasVerde = diasVerde;
+        this.prioridadRojo = prioridadRojo;
+        this.prioridadNaranja = prioridadNaranja;
+        this.prioridadVerde = prioridadVerde;
+        this.rojoColor = rojoColor;
+        this.naranjaColor = naranjaColor;
+        this.verdeColor = verdeColor;
+        this.direccionSeccional = direccionSeccional;
+    }
+
+    public SetupAlertaContrato(Long id, int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor, DireccionSeccional direccionSeccional) {
+        this.id = id;
         this.diasRojo = diasRojo;
         this.diasNaranja = diasNaranja;
         this.diasVerde = diasVerde;
