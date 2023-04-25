@@ -33,6 +33,14 @@ public class TipoDocumento {
         
     }
 
+    public TipoDocumento(String descripcion, TipoPersona tipoPersona) {
+        this.descripcion = descripcion;
+        this.tipoPersona = tipoPersona;
+        this.eliminado=false;
+    }
+    
+    
+
     /**
      * @return the idTipoDocumento
      */

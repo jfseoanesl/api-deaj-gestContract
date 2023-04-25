@@ -19,6 +19,10 @@ public class UsuarioAdministrador extends Usuario{
     public UsuarioAdministrador(Long idUsuario, PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, boolean estado) {
         super(idUsuario, datosPersona, userName, password, rolUsuario, estado);
     }
+
+    public UsuarioAdministrador(PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, DireccionSeccional direccionSeccional, Usuario createdByUser) {
+        super(datosPersona, userName, password, rolUsuario, direccionSeccional, createdByUser);
+    }
     
     
 }

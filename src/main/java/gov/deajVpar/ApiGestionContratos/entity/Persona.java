@@ -32,6 +32,7 @@ public abstract class Persona {
 
     public Persona() {
         this.listContratosSuscritos= new ArrayList();
+        this.eliminado=false;
     }
 
     public Persona(Long idPersona, TipoDocumento tipoDocumento, String noDocumento) {
@@ -41,6 +42,13 @@ public abstract class Persona {
         this.noDocumento = noDocumento;
         this.eliminado = false;
     }
+
+    public Persona(TipoDocumento tipoDocumento, String noDocumento) {
+        this();
+        this.tipoDocumento = tipoDocumento;
+        this.noDocumento = noDocumento;
+    }
+    
 
     /**
      * @return the idPersona

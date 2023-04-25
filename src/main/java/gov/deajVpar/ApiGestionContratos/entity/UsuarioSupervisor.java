@@ -34,6 +34,10 @@ public class UsuarioSupervisor extends Usuario{
         this.listInformesSupervision=new ArrayList();
     }
 
+    public UsuarioSupervisor(PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, DireccionSeccional direccionSeccional, Usuario createdByUser) {
+        super(datosPersona, userName, password, rolUsuario, direccionSeccional, createdByUser);
+    }
+
     /**
      * @return the listContratosSupervisados
      */

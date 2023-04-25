@@ -33,6 +33,16 @@ public class PersonaNatural extends Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public PersonaNatural(String pNombre, String sNombre, String pApellido, String sApellido, GeneroPersona genero, LocalDate fechaNacimiento, TipoDocumento tipoDocumento, String noDocumento) {
+        super(tipoDocumento, noDocumento);
+        this.pNombre = pNombre;
+        this.sNombre = sNombre;
+        this.pApellido = pApellido;
+        this.sApellido = sApellido;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
    
 
     /**

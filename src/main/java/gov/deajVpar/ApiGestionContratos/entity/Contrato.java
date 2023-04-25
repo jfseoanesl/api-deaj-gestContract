@@ -12,6 +12,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 /**
@@ -99,6 +100,70 @@ public class Contrato {
     private List<AnotacionContrato> listAnotacionesContrato;
 
     public Contrato() {
+        DireccionSeccional direccion = new DireccionSeccional("Direccion seccional de valledupar", new UsuarioAdministrador());
+        
+        RolUsuario rol = new RolUsuario("Administradot", new UsuarioAdministrador());
+        PermisoUsuario permiso = new PermisoUsuario(Modulo.CONTRATOS, true, true, true, true, rol);
+        rol.getListPermisosUsuario().add(permiso);
+        TipoDocumento tipoCC = new TipoDocumento("CC", TipoPersona.NATURAL);
+        PersonaNatural persona = new PersonaNatural("jairo", "francisco", "seoanes", "leon", GeneroPersona.MASCULINO, LocalDate.of(1985, Month.MARCH, 5), tipoCC, "77097016");
+        Usuario admin = new UsuarioAdministrador(persona, "jfsl", "12345", rol, direccion, new UsuarioAdministrador());
+        
+        this.noProceso = "015-2018";
+        this.aInicioVigencia=2018;
+        this.aFinVigencia=2019;
+        this.noContrato="052";
+        this.estadoContrato = EstadoContrato.EJECUCION;
+        this.etapaContrato= EtapaContractual.CONTRACTUAL;
+        this.objetoContrato="Contratar en nombre de la nacion y del consejo superior de la judicatura"
+                            +" el arrendamiento de oficinas del edificio torre premiun de valledupar" ;
+        this.fechaInicioEjecucion= LocalDate.of(2018, Month.NOVEMBER, 1);
+        this.fechaFinEjecucion=LocalDate.of(2019, Month.OCTOBER, 31);;
+        this.duracionContrato=12;
+        this.cuantiaInicialContrato=418300000;
+        this.cuantiaFinalContrato=418300000;
+        this.pEjecucionFinanciera=0;
+        this.pEjecucionFisica=0;
+        this.fechaInicioProceso=LocalDate.of(2018, Month.OCTOBER, 30);
+        
+        this.enlaceSecop="https://www.contratos.gov.co/consultas/detalleProceso.do?numConstancia=18-12-8720063&g-recaptcha-response=03AL8dmw9r2dgWI4k9bkLVNvOUHon9ajY9n6M48vOWqOFuhFPXpxk7Ri7YVQuR9BKJ0a0QcBqWy9-U2uVvuPC0oqQZVhTS6pLxSh1KBS54_Ou7PSxdjbnyVNNEdnimZsmNatS1t0o2YCNVyc5kY5RcnforhBlx6OULjdp_PctbiDfp5TuMGhKI8g4FM2S6YtaPHa8SgbArtrSYp50LxvvUZQWXXcLxS5jsWnSslI6pSA7M72q8A--n5bBH4ukNQP91o8J6ttUlnmzT6mMCHyFDG0IKY487N03JiOyfM65fRPw3-UCyQHkkapM54B4z1iiZzPHav7MVBkcP99C7cxB2dUa1CuIigng43KXl022XJnDidfj5xz3I_vlWWwY1MxHFdpO_4GM1KtrxWuNdbW5mXKPXTJaJfMAHFUoVR_TDEhnBTaq-MzjOpM-MR1-RGPGcM5i3BKRHSccDuSIrqM_ES6ikVr3uBE8H-NTKb59gP_PQ4wbnQF39XfNUjN_3ggFVBPS6e75Rmd2OZwyiK4VQK3u7aU-16ICnDHgrZ1NPJTRBge0HetCrJ30";
+        this.enlaceWeb="https://www.contratos.gov.co/consultas/detalleProceso.do?numConstancia=18-12-8720063&g-recaptcha-response=03AL8dmw9r2dgWI4k9bkLVNvOUHon9ajY9n6M48vOWqOFuhFPXpxk7Ri7YVQuR9BKJ0a0QcBqWy9-U2uVvuPC0oqQZVhTS6pLxSh1KBS54_Ou7PSxdjbnyVNNEdnimZsmNatS1t0o2YCNVyc5kY5RcnforhBlx6OULjdp_PctbiDfp5TuMGhKI8g4FM2S6YtaPHa8SgbArtrSYp50LxvvUZQWXXcLxS5jsWnSslI6pSA7M72q8A--n5bBH4ukNQP91o8J6ttUlnmzT6mMCHyFDG0IKY487N03JiOyfM65fRPw3-UCyQHkkapM54B4z1iiZzPHav7MVBkcP99C7cxB2dUa1CuIigng43KXl022XJnDidfj5xz3I_vlWWwY1MxHFdpO_4GM1KtrxWuNdbW5mXKPXTJaJfMAHFUoVR_TDEhnBTaq-MzjOpM-MR1-RGPGcM5i3BKRHSccDuSIrqM_ES6ikVr3uBE8H-NTKb59gP_PQ4wbnQF39XfNUjN_3ggFVBPS6e75Rmd2OZwyiK4VQK3u7aU-16ICnDHgrZ1NPJTRBge0HetCrJ30";
+        this.fechaPublicacionSecop=LocalDate.of(2018, Month.OCTOBER, 30);;
+        this.fechaAperturaProceso=LocalDate.of(2018, Month.OCTOBER, 30);;
+        this.fechaCierreProceso=null;
+        this.fechaSuscripcionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
+        this.fechaAdjudicacionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
+        this.fechaTerminacionContrato=null;
+        this.fechaLiquidacionContrato=null;
+        this.fechaDesignacionInterventor=null;
+        this.fechaCierreContrato=null;
+        
+        Dpto dpto = new Dpto(123, "Cesar");
+        Ciudad ciudad = new Ciudad("100", "Valledupar", dpto);
+        Ciudad ciudad2 = new Ciudad("200", "La Paz", dpto);
+        LugarEjecucion lugar1 = new LugarEjecucion(dpto, ciudad, "Calle 38a #5a-31", this);
+        LugarEjecucion lugar2 = new LugarEjecucion(dpto, ciudad, "Edificio caja agraria, calle 16 # 9-44", this);
+        this.lugarEjecucion.add(lugar1);
+        this.lugarEjecucion.add(lugar2);
+        
+        TipoDocumento tipo = new TipoDocumento("nit", TipoPersona.JURIDICA);
+        Persona contratista = new PersonaJuridica("Inversiones guatapuri", tipo, "900579115-1");
+        this.contratistaAdjudicado= contratista;
+        
+        ModalidadContrato modalidad = new ModalidadContrato("Contratacion directa", "Contratacion directa", new UsuarioJuridica()); 
+        SubModalidadContrato subModalidad = new SubModalidadContrato("Subcontratacion", "Sub modalidad", modalidad, new UsuarioJuridica());
+        this.modalidad=modalidad;
+        this.subModalidad=subModalidad;
+        
+        TipoContrato tipoCOntrato = new TipoContrato("Arrendamiento", new UsuarioJuridica());
+        this.tipoContrato=tipoContrato;
+    
+        
+        this.direccion=direccion;
+        UsuarioSupervisor supervisor = new UsuarioSupervisor(persona, "jfsl", "12345", rol, direccion, admin);
+        this.supervisor=supervisor;
+    
+        
     }
 
     /**

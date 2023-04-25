@@ -24,6 +24,11 @@ public class PersonaJuridica extends Persona {
         super(idPersona, tipoDocumento, noDocumento);
     }
 
+    public PersonaJuridica(String nombreEmpresa, TipoDocumento tipoDocumento, String noDocumento) {
+        super(tipoDocumento, noDocumento);
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
     /**
      * @return the nombreEmpresa
      */

@@ -51,6 +51,16 @@ public abstract class Usuario {
         this.estado = estado;
     }
 
+    public Usuario(PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, DireccionSeccional direccionSeccional, Usuario createdByUser) {
+        this.datosPersona = datosPersona;
+        this.userName = userName;
+        this.password = password;
+        this.rolUsuario = rolUsuario;
+        this.direccionSeccional = direccionSeccional;
+        this.createdByUser = createdByUser;
+        this.estado=false;
+    }
+
     /**
      * @return the idUsuario
      */
