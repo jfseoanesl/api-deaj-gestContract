@@ -21,14 +21,12 @@ public class Ciudad {
     private String codigoCiudad;
     @NotBlank
     private String nombreCiudad;
-    @ManyToOne
-    @JoinColumn(name = "dpto_id")
-    private Dpto dpto;
+    
 
-    public Ciudad(String codigoCiudad, String nombreCiudad, Dpto dpto) {
+    public Ciudad(String codigoCiudad, String nombreCiudad) {
         this.codigoCiudad = codigoCiudad;
         this.nombreCiudad = nombreCiudad;
-        this.dpto = dpto;
+        
     }
 
     public Ciudad() {
@@ -70,19 +68,7 @@ public class Ciudad {
         return "Ciudad{" + "idCiudad=" + idCiudad + ", nombreCiudad=" + nombreCiudad + '}';
     }
 
-    /**
-     * @return the dpto
-     */
-    public Dpto getDpto() {
-        return dpto;
-    }
-
-    /**
-     * @param dpto the dpto to set
-     */
-    public void setDpto(Dpto dpto) {
-        this.dpto = dpto;
-    }
+    
 
     /**
      * @return the codigoCiudad

@@ -1,5 +1,6 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class ModalidadContrato {
     private String descripcionModalidad;
     @NotBlank
     private String nombreModalidad;
-    @OneToMany(mappedBy = "modalidadContrato")
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<SubModalidadContrato> listSubModalidades;
     @OneToMany(mappedBy = "modalidad")
     private List<Contrato> listContratosRegistrados;
@@ -159,5 +160,8 @@ public class ModalidadContrato {
         return "ModalidadContrato{" + "idModalidad=" + idModalidad + ", descripcionModalidad=" + descripcionModalidad + ", nombreModalidad=" + nombreModalidad + ", listContratosRegistrados=" + listContratosRegistrados + ", createByUser=" + createByUser + ", eliminado=" + eliminado + '}';
     }
 
+    public void addSubModalidad(SubModalidadContrato sub){
+        this.listSubModalidades.add(sub);
+    }
     
 }

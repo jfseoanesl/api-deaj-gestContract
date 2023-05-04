@@ -9,5 +9,27 @@ package gov.deajVpar.ApiGestionContratos.entity;
  * @author Jairo F
  */
 public enum GeneroPersona {
-    MASCULINO, FEMENINO, OTRO
+    MASCULINO, FEMENINO, OTRO;
+
+    public static GeneroPersona get(String descricipcion) {
+        GeneroPersona gp;
+        switch (descricipcion) {
+
+            case "Masculino":
+            case "MASCULINO":
+                gp = MASCULINO;
+                break;
+
+            case "Femenino":
+            case "FEMENINO":
+                gp = FEMENINO;
+                break;
+
+            default:
+                gp = OTRO;
+
+        }
+        return gp;
+
+    }
 }

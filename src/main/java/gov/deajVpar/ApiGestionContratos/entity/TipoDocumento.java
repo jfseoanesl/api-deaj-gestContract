@@ -17,6 +17,8 @@ public class TipoDocumento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTipoDocumento;
     @NotBlank
+    private String tipo;
+    @NotBlank
     private String descripcion;
     @NotNull
     private TipoPersona tipoPersona;
@@ -26,17 +28,19 @@ public class TipoDocumento {
         this.eliminado=false;
     }
 
-    public TipoDocumento(Long idTipoDocumento, String descripcion, TipoPersona tipo) {
+    public TipoDocumento(Long idTipoDocumento, String tipo, String descripcion, TipoPersona tipoPersona) {
         this();
         this.idTipoDocumento = idTipoDocumento;
         this.descripcion = descripcion;
-        this.tipoPersona = tipo;
+        this.tipoPersona = tipoPersona;
+        this.tipo=tipo;
         
     }
 
-    public TipoDocumento(String descripcion, TipoPersona tipoPersona) {
+    public TipoDocumento(String tipo, String descripcion, TipoPersona tipoPersona) {
         this.descripcion = descripcion;
         this.tipoPersona = tipoPersona;
+        this.tipo=tipo;
         this.eliminado=false;
     }
     

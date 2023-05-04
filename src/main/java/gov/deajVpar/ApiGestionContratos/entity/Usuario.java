@@ -1,5 +1,6 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,13 +24,13 @@ public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "persona_id")
     private PersonaNatural datosPersona;
     @Column(unique = true)
     private String userName;
     private String password;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "rolusuario_id")
     private RolUsuario rolUsuario;
     @ManyToOne

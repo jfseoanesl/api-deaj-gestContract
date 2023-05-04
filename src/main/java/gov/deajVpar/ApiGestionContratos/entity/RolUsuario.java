@@ -1,11 +1,15 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +20,16 @@ import java.util.List;
 @Entity
 public class RolUsuario {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idRol;
     @NotBlank
     private String nombreRol;
-    @OneToMany(mappedBy = "rolUsuario")
+    @NotNull
+    private TipoUsuario tipoUsuario;
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<PermisoUsuario> listPermisosUsuario;
-    @OneToOne(mappedBy = "rolUsuario")
-    private Usuario usuario;
+//    @OneToOne(mappedBy = "rolUsuario")
+//    private Usuario usuario;
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario cratedByUser;
@@ -33,27 +40,28 @@ public class RolUsuario {
         this.listPermisosUsuario = new ArrayList();
     }
 
-    public RolUsuario(String nombreRol, Usuario cratedByUser) {
-        this();
+    public RolUsuario(String nombreRol, TipoUsuario tipoUsuario, List<PermisoUsuario> listPermisosUsuario) {
         this.nombreRol = nombreRol;
-        this.cratedByUser = cratedByUser;
-        this.eliminado=false;
+        this.tipoUsuario = tipoUsuario;
+        this.listPermisosUsuario = listPermisosUsuario;
+        this.cratedByUser = null;
+        this.eliminado = false;
     }
 
-    public RolUsuario(String nombreRol, List<PermisoUsuario> listPermisosUsuario, Usuario usuario, Usuario cratedByUser) {
+    
+
+    public RolUsuario(String nombreRol, List<PermisoUsuario> listPermisosUsuario,  Usuario cratedByUser) {
         this();
         this.nombreRol = nombreRol;
         this.listPermisosUsuario = listPermisosUsuario;
-        this.usuario = usuario;
         this.cratedByUser = cratedByUser;
         this.eliminado=false;
     }
 
-    public RolUsuario(Long idRol, String nombreRol, List<PermisoUsuario> listPermisosUsuario, Usuario usuario, Usuario cratedByUser, boolean eliminado) {
+    public RolUsuario(Long idRol, String nombreRol, List<PermisoUsuario> listPermisosUsuario, Usuario cratedByUser, boolean eliminado) {
         this.idRol = idRol;
         this.nombreRol = nombreRol;
         this.listPermisosUsuario = listPermisosUsuario;
-        this.usuario = usuario;
         this.cratedByUser = cratedByUser;
         this.eliminado = eliminado;
     }
@@ -83,7 +91,7 @@ public class RolUsuario {
      * @param nombreRol the nombreRol to set
      */
     public void setNombreRol(String nombreRol) {
-        this.nombreRol = nombreRol;
+        this.setNombreRol(nombreRol);
     }
 
     /**
@@ -133,18 +141,19 @@ public class RolUsuario {
         return "RolUsuario{" + "idRol=" + idRol + ", nombreRol=" + nombreRol + ", listPermisosUsuario=" + listPermisosUsuario + ", cratedByUser=" + cratedByUser + ", eliminado=" + eliminado + '}';
     }
 
+    
     /**
-     * @return the usuario
+     * @return the tipoUsuario
      */
-    public Usuario getUsuario() {
-        return usuario;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param tipoUsuario the tipoUsuario to set
      */
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     

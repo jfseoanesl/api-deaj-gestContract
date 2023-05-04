@@ -29,9 +29,6 @@ public class SubModalidadContrato {
     private String descripcionSubModalidad;
     @NotBlank
     private String nombreSubModalidad;
-    @ManyToOne
-    @JoinColumn(name = "modalidad_id")
-    private ModalidadContrato modalidadContrato;
     @OneToMany(mappedBy = "subModalidad")
     private List<Contrato> listContratosRegistrados;
     @OneToOne
@@ -44,20 +41,18 @@ public class SubModalidadContrato {
         this.eliminado=false;
     }
 
-    public SubModalidadContrato(String descripcionSubModalidad, String nombreSubModalidad, ModalidadContrato modalidadContrato, Usuario createByUser) {
+    public SubModalidadContrato(String descripcionSubModalidad, String nombreSubModalidad, Usuario createByUser) {
         this();
         this.descripcionSubModalidad = descripcionSubModalidad;
         this.nombreSubModalidad = nombreSubModalidad;
-        this.modalidadContrato = modalidadContrato;
         this.createByUser = createByUser;
         
     }
 
-    public SubModalidadContrato(Long idSubModalidad, String descripcionSubModalidad, String nombreSubModalidad, ModalidadContrato modalidadContrato, List<Contrato> listContratosRegistrados, Usuario createByUser, boolean eliminado) {
+    public SubModalidadContrato(Long idSubModalidad, String descripcionSubModalidad, String nombreSubModalidad, List<Contrato> listContratosRegistrados, Usuario createByUser, boolean eliminado) {
         this.idSubModalidad = idSubModalidad;
         this.descripcionSubModalidad = descripcionSubModalidad;
         this.nombreSubModalidad = nombreSubModalidad;
-        this.modalidadContrato = modalidadContrato;
         this.listContratosRegistrados = listContratosRegistrados;
         this.createByUser = createByUser;
         this.eliminado = eliminado;
@@ -103,20 +98,6 @@ public class SubModalidadContrato {
      */
     public void setNombreSubModalidad(String nombreSubModalidad) {
         this.nombreSubModalidad = nombreSubModalidad;
-    }
-
-    /**
-     * @return the modalidadContrato
-     */
-    public ModalidadContrato getModalidadContrato() {
-        return modalidadContrato;
-    }
-
-    /**
-     * @param modalidadContrato the modalidadContrato to set
-     */
-    public void setModalidadContrato(ModalidadContrato modalidadContrato) {
-        this.modalidadContrato = modalidadContrato;
     }
 
     /**
