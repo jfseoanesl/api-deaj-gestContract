@@ -1,6 +1,8 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -19,6 +21,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Persona {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPersona;
     @ManyToOne
     @JoinColumn(name = "tipodocumento_id")

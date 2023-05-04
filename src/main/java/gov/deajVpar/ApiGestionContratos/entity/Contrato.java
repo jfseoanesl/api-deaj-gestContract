@@ -105,70 +105,70 @@ public class Contrato implements Serializable {
     private boolean eliminado;
     
     public Contrato() {
-        this.eliminado=false;
-        DireccionSeccional direccion = new DireccionSeccional("Direccion seccional de valledupar", new UsuarioAdministrador());
-        
-        RolUsuario rol = new RolUsuario("Administradot", new UsuarioAdministrador());
-        PermisoUsuario permiso = new PermisoUsuario(Modulo.CONTRATOS, true, true, true, true, rol);
-        rol.getListPermisosUsuario().add(permiso);
-        TipoDocumento tipoCC = new TipoDocumento("CC", TipoPersona.NATURAL);
-        PersonaNatural persona = new PersonaNatural("jairo", "francisco", "seoanes", "leon", GeneroPersona.MASCULINO, LocalDate.of(1985, Month.MARCH, 5), tipoCC, "77097016");
-        Usuario admin = new UsuarioAdministrador(persona, "jfsl", "12345", rol, direccion, new UsuarioAdministrador());
-        
-        this.noProceso = "015-2018";
-        this.aInicioVigencia=2018;
-        this.aFinVigencia=2019;
-        this.noContrato="052";
-        this.estadoContrato = EstadoContrato.EJECUCION;
-        this.etapaContrato= EtapaContractual.CONTRACTUAL;
-        this.objetoContrato="Contratar en nombre de la nacion y del consejo superior de la judicatura"
-                            +" el arrendamiento de oficinas del edificio torre premiun de valledupar" ;
-        this.fechaInicioEjecucion= LocalDate.of(2018, Month.NOVEMBER, 1);
-        this.fechaFinEjecucion=LocalDate.of(2019, Month.OCTOBER, 31);
-        this.duracionContrato=12;
-        this.cuantiaInicialContrato=418300000;
-        this.cuantiaFinalContrato=418300000;
-        this.pEjecucionFinanciera=0;
-        this.pEjecucionFisica=0;
-        this.fechaInicioProceso=LocalDate.of(2018, Month.OCTOBER, 30);
-        
-        this.enlaceSecop="https://www.contratos.gov.co/";
-        this.enlaceWeb="https://www.contratos.gov.co/";
-        this.fechaPublicacionSecop=LocalDate.of(2018, Month.OCTOBER, 30);;
-        this.fechaAperturaProceso=LocalDate.of(2018, Month.OCTOBER, 30);;
-        this.fechaCierreProceso=null;
-        this.fechaSuscripcionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
-        this.fechaAdjudicacionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
-        this.fechaTerminacionContrato=LocalDate.of(2019, Month.OCTOBER, 31);
-        this.fechaLiquidacionContrato=null;
-        this.fechaDesignacionInterventor=null;
-        this.fechaCierreContrato=null;
-        
-        Dpto dpto = new Dpto(123, "Cesar");
-        Ciudad ciudad = new Ciudad("100", "Valledupar", dpto);
-        Ciudad ciudad2 = new Ciudad("200", "La Paz", dpto);
-        LugarEjecucion lugar1 = new LugarEjecucion(dpto, ciudad, "Calle 38a #5a-31", this);
-        LugarEjecucion lugar2 = new LugarEjecucion(dpto, ciudad, "Edificio caja agraria, calle 16 # 9-44", this);
-        this.lugarEjecucion = new ArrayList();
-        this.lugarEjecucion.add(lugar1);
-        this.lugarEjecucion.add(lugar2);
-        
-        TipoDocumento tipo = new TipoDocumento("nit", TipoPersona.JURIDICA);
-        Persona contratista = new PersonaJuridica("Inversiones guatapuri", tipo, "900579115-1");
-        this.contratistaAdjudicado= contratista;
-        
-        ModalidadContrato modalidad = new ModalidadContrato("Contratacion directa", "Contratacion directa", new UsuarioJuridica()); 
-        SubModalidadContrato subModalidad = new SubModalidadContrato("Subcontratacion", "Sub modalidad", modalidad, new UsuarioJuridica());
-        this.modalidad=modalidad;
-        this.subModalidad=subModalidad;
+//        this.eliminado=false;
+//        DireccionSeccional direccion = new DireccionSeccional("Direccion seccional de valledupar", new UsuarioAdministrador());
 //        
-        TipoContrato tipoCOntrato = new TipoContrato("Arrendamiento", new UsuarioJuridica());
-        this.tipoContrato=tipoContrato;
-    
-        
-        this.direccion=direccion;
-        UsuarioSupervisor supervisor = new UsuarioSupervisor(persona, "jfsl", "12345", rol, direccion, admin);
-        this.supervisor=supervisor;
+//        RolUsuario rol = new RolUsuario("Administradot", new UsuarioAdministrador());
+//        PermisoUsuario permiso = new PermisoUsuario(Modulo.ALL, true, true, true, true, rol);
+//        rol.getListPermisosUsuario().add(permiso);
+//        TipoDocumento tipoCC = new TipoDocumento("CC", TipoPersona.NATURAL);
+//        PersonaNatural persona = new PersonaNatural("jairo", "francisco", "seoanes", "leon", GeneroPersona.MASCULINO, LocalDate.of(1985, Month.MARCH, 5), tipoCC, "77097016");
+//        Usuario admin = new UsuarioAdministrador(persona, "jfsl", "12345", rol, direccion, new UsuarioAdministrador());
+//        
+//        this.noProceso = "015-2018";
+//        this.aInicioVigencia=2018;
+//        this.aFinVigencia=2019;
+//        this.noContrato="052";
+//        this.estadoContrato = EstadoContrato.EJECUCION;
+//        this.etapaContrato= EtapaContractual.CONTRACTUAL;
+//        this.objetoContrato="Contratar en nombre de la nacion y del consejo superior de la judicatura"
+//                            +" el arrendamiento de oficinas del edificio torre premiun de valledupar" ;
+//        this.fechaInicioEjecucion= LocalDate.of(2018, Month.NOVEMBER, 1);
+//        this.fechaFinEjecucion=LocalDate.of(2019, Month.OCTOBER, 31);
+//        this.duracionContrato=12;
+//        this.cuantiaInicialContrato=418300000;
+//        this.cuantiaFinalContrato=418300000;
+//        this.pEjecucionFinanciera=0;
+//        this.pEjecucionFisica=0;
+//        this.fechaInicioProceso=LocalDate.of(2018, Month.OCTOBER, 30);
+//        
+//        this.enlaceSecop="https://www.contratos.gov.co/";
+//        this.enlaceWeb="https://www.contratos.gov.co/";
+//        this.fechaPublicacionSecop=LocalDate.of(2018, Month.OCTOBER, 30);;
+//        this.fechaAperturaProceso=LocalDate.of(2018, Month.OCTOBER, 30);;
+//        this.fechaCierreProceso=null;
+//        this.fechaSuscripcionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
+//        this.fechaAdjudicacionContrato=LocalDate.of(2018, Month.OCTOBER, 30);;
+//        this.fechaTerminacionContrato=LocalDate.of(2019, Month.OCTOBER, 31);
+//        this.fechaLiquidacionContrato=null;
+//        this.fechaDesignacionInterventor=null;
+//        this.fechaCierreContrato=null;
+//        
+//        Dpto dpto = new Dpto(123, "Cesar");
+//        Ciudad ciudad = new Ciudad("100", "Valledupar", dpto);
+//        Ciudad ciudad2 = new Ciudad("200", "La Paz", dpto);
+//        LugarEjecucion lugar1 = new LugarEjecucion(dpto, ciudad, "Calle 38a #5a-31", this);
+//        LugarEjecucion lugar2 = new LugarEjecucion(dpto, ciudad, "Edificio caja agraria, calle 16 # 9-44", this);
+//        this.lugarEjecucion = new ArrayList();
+//        this.lugarEjecucion.add(lugar1);
+//        this.lugarEjecucion.add(lugar2);
+//        
+//        TipoDocumento tipo = new TipoDocumento("nit", TipoPersona.JURIDICA);
+//        Persona contratista = new PersonaJuridica("Inversiones guatapuri", tipo, "900579115-1");
+//        this.contratistaAdjudicado= contratista;
+//        
+//        ModalidadContrato modalidad = new ModalidadContrato("Contratacion directa", "Contratacion directa", new UsuarioJuridica()); 
+//        SubModalidadContrato subModalidad = new SubModalidadContrato("Subcontratacion", "Sub modalidad", modalidad, new UsuarioJuridica());
+//        this.modalidad=modalidad;
+//        this.subModalidad=subModalidad;
+////        
+//        TipoContrato tipoCOntrato = new TipoContrato("Arrendamiento", new UsuarioJuridica());
+//        this.tipoContrato=tipoContrato;
+//    
+//        
+//        this.direccion=direccion;
+//        UsuarioSupervisor supervisor = new UsuarioSupervisor(persona, "jfsl", "12345", rol, direccion, admin);
+//        this.supervisor=supervisor;
     
         
     }

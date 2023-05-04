@@ -1,5 +1,6 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,16 +21,16 @@ public class Dpto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idDpto;
     @Column(unique = true)
-    private int codigoDpto;
+    private String codigoDpto;
     @NotBlank
     private String nombreDpto;
-    @OneToMany(mappedBy = "dpto")
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Ciudad> listCiudades;
 
     public Dpto() {
     }
 
-    public Dpto(int codigoDpto, String nombreDpto) {
+    public Dpto(String codigoDpto, String nombreDpto) {
         this.codigoDpto = codigoDpto;
         this.nombreDpto = nombreDpto;
     }
@@ -90,14 +91,14 @@ public class Dpto {
     /**
      * @return the codigoDpto
      */
-    public int getCodigoDpto() {
+    public String getCodigoDpto() {
         return codigoDpto;
     }
 
     /**
      * @param codigoDpto the codigoDpto to set
      */
-    public void setCodigoDpto(int codigoDpto) {
+    public void setCodigoDpto(String codigoDpto) {
         this.codigoDpto = codigoDpto;
     }
 }

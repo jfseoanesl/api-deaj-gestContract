@@ -4,10 +4,26 @@
  */
 package gov.deajVpar.ApiGestionContratos.controllers;
 
+import gov.deajVpar.ApiGestionContratos.dtos.UserDataDto;
+import gov.deajVpar.ApiGestionContratos.dtos.DptoDto;
+import gov.deajVpar.ApiGestionContratos.dtos.InitializeDto;
+import gov.deajVpar.ApiGestionContratos.dtos.SistemaDto;
+import gov.deajVpar.ApiGestionContratos.entity.Dpto;
 import gov.deajVpar.ApiGestionContratos.entity.Sistema;
+import gov.deajVpar.ApiGestionContratos.entity.UsuarioAdministrador;
+import gov.deajVpar.ApiGestionContratos.mappersStruct.DptoDtoMapper;
+import gov.deajVpar.ApiGestionContratos.mappersStruct.SistemaDtoMapper;
 import gov.deajVpar.ApiGestionContratos.service.SistemaService;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import org.mapstruct.factory.Mappers;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,24 +32,51 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SistemaController {
-    
+
     private SistemaService service;
 
     public SistemaController(SistemaService service) {
         this.service = service;
     }
-    
+
     @GetMapping("/")
-    public Sistema home(){
-        
-        return this.service.get();
-        
+    public SistemaDto home() {
+
+        Sistema sistema = this.service.get();
+        SistemaDto dto = SistemaDtoMapper.INSTANCE.sistemaToDto(sistema);
+        return dto;
+
     }
-    
-    @PostMapping("/save")
-    public Sistema save(Sistema sistema){
-        this.service.save(sistema);
+
+    @PostMapping("/initialize")
+    public Sistema initialize(@RequestBody InitializeDto dto) throws Exception {
+        List<Dpto>dptoList=null;
+        Map<String, DptoDto> listDptoDto=null;
+        Sistema sistema = SistemaDtoMapper.INSTANCE.dtoToSistema(dto.getSistema());
+        UserDataDto userDto = null;
+        if (!sistema.isInicializado()) {
+            listDptoDto=dto.getDptos();
+            userDto = dto.getUserData();
+            dptoList = this.mapDtoToListDpto(listDptoDto);
+            this.service.inicializarSistema(sistema, dptoList, userDto);
+        } 
         return sistema;
     }
     
+    public List<Dpto> mapDtoToListDpto(Map<String, DptoDto> map){
+        List<Dpto> list = new ArrayList();
+       
+       for(Entry<String, DptoDto> e: map.entrySet()){
+            Dpto dpto = DptoDtoMapper.INSTANCE.toDpto(e.getValue());
+            list.add(dpto);
+        }
+        return list;
+    }
+    
+    
+
+    
+    
+   
+
 }

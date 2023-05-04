@@ -2,35 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gov.deajVpar.ApiGestionContratos.entity;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package gov.deajVpar.ApiGestionContratos.dtos;
 
 /**
  *
  * @author Jairo F
  */
-@Entity
-public class Sistema {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class SistemaDto{
     private Long id;
     private String titulo;
     private String version;
     private String name;
     private boolean inicializado;
 
-    public Sistema() {
-        this.version = "V1.0";
-        this.name="GestContract";
-        this.titulo = "Sistema para el seguimiento de contratos suscritos por Deaj";
-        this.inicializado=false;
-    }
-
-    public Sistema(Long id, String titulo, String version, String name, boolean inicializado) {
+    public SistemaDto(Long id, String titulo, String version, String name, boolean inicializado) {
         this.id = id;
         this.titulo = titulo;
         this.version = version;
@@ -38,14 +23,8 @@ public class Sistema {
         this.inicializado = inicializado;
     }
 
-    public Sistema(String titulo, String version, String name, boolean inicializado) {
-        this.titulo = titulo;
-        this.version = version;
-        this.name = name;
-        this.inicializado = inicializado;
+    public SistemaDto() {
     }
-
-    
 
     /**
      * @return the id
@@ -90,20 +69,6 @@ public class Sistema {
     }
 
     /**
-     * @return the inicializado
-     */
-    public boolean isInicializado() {
-        return inicializado;
-    }
-
-    /**
-     * @param inicializado the inicializado to set
-     */
-    public void setInicializado(boolean inicializado) {
-        this.inicializado = inicializado;
-    }
-
-    /**
      * @return the name
      */
     public String getName() {
@@ -117,9 +82,18 @@ public class Sistema {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Sistema{" + "id=" + id + ", titulo=" + titulo + ", version=" + version + ", name=" + name + ", inicializado=" + inicializado + '}';
+    /**
+     * @return the inicializado
+     */
+    public boolean isInicializado() {
+        return inicializado;
+    }
+
+    /**
+     * @param inicializado the inicializado to set
+     */
+    public void setInicializado(boolean inicializado) {
+        this.inicializado = inicializado;
     }
     
     

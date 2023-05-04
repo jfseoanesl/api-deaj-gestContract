@@ -8,9 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 /**
@@ -28,30 +25,31 @@ public class PermisoUsuario {
     private boolean u;
     private boolean d;
     private boolean r;
-    @ManyToOne
-    @JoinColumn(name = "rolusuario_id")
-    private RolUsuario rolUsuario;
+//    @ManyToOne
+//    @JoinColumn(name = "rolusuario_id")
+//    private RolUsuario rolUsuario;
 
     public PermisoUsuario() {
     }
 
-    public PermisoUsuario(Modulo modulo, boolean c, boolean u, boolean d, boolean r, RolUsuario rolUsuario) {
+    public PermisoUsuario(Modulo modulo, boolean c, boolean u, boolean d, boolean r) {
         this.modulo = modulo;
         this.c = c;
         this.u = u;
         this.d = d;
         this.r = r;
-        this.rolUsuario = rolUsuario;
     }
 
-    public PermisoUsuario(Long id, Modulo modulo, boolean c, boolean u, boolean d, boolean r, RolUsuario rolUsuario) {
+    
+    
+    public PermisoUsuario(Long id, Modulo modulo, boolean c, boolean u, boolean d, boolean r) {
         this.id = id;
         this.modulo = modulo;
         this.c = c;
         this.u = u;
         this.d = d;
         this.r = r;
-        this.rolUsuario = rolUsuario;
+  
     }
 
     /**
@@ -138,23 +136,11 @@ public class PermisoUsuario {
         this.r = r;
     }
 
-    /**
-     * @return the rolUsuario
-     */
-    public RolUsuario getRolUsuario() {
-        return rolUsuario;
-    }
-
-    /**
-     * @param rolUsuario the rolUsuario to set
-     */
-    public void setRolUsuario(RolUsuario rolUsuario) {
-        this.rolUsuario = rolUsuario;
-    }
+    
 
     @Override
     public String toString() {
-        return "PermisoUsuario{" + "id=" + id + ", modulo=" + modulo + ", c=" + c + ", u=" + u + ", d=" + d + ", r=" + r + ", rolUsuario=" + rolUsuario + '}';
+        return "PermisoUsuario{" + "id=" + id + ", modulo=" + modulo + ", c=" + c + ", u=" + u + ", d=" + d + ", r=" + r +  '}';
     }
 
  

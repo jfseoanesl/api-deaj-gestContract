@@ -4,12 +4,23 @@
  */
 package gov.deajVpar.ApiGestionContratos.service;
 
+import gov.deajVpar.ApiGestionContratos.dtos.UserDataDto;
+import gov.deajVpar.ApiGestionContratos.entity.Dpto;
+import gov.deajVpar.ApiGestionContratos.entity.GeneroPersona;
+import gov.deajVpar.ApiGestionContratos.entity.Persona;
+import gov.deajVpar.ApiGestionContratos.entity.PersonaNatural;
+import gov.deajVpar.ApiGestionContratos.entity.RolUsuario;
 import gov.deajVpar.ApiGestionContratos.entity.Sistema;
+import gov.deajVpar.ApiGestionContratos.entity.TipoDocumento;
+import gov.deajVpar.ApiGestionContratos.entity.Usuario;
+import gov.deajVpar.ApiGestionContratos.entity.UsuarioAdministrador;
 import gov.deajVpar.ApiGestionContratos.repository.SistemaRepository;
+import gov.deajVpar.ApiGestionContratos.utility.PasswordEncoder;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  *
@@ -19,21 +30,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SistemaService {
 
     private SistemaRepository repository;
+    private TipoDocumentoService tipoDocumentoService;
+    private RolUsuarioService rolUsuarioService;
+    private DptoService dptoService;
+    private ModalidadContratoService modalidadContratoService;
+    private TipoContratoService tipoContratoService;
+    private UsuarioAdministradorService usuarioAdmonService;
 
-    public SistemaService(SistemaRepository repository) {
+    public SistemaService(SistemaRepository repository, TipoDocumentoService tipoDocumentoService, RolUsuarioService rolUsuarioService, DptoService dptoService, ModalidadContratoService modalidadContratoService, TipoContratoService tipoContratoService, UsuarioAdministradorService usuarioAdmonService) {
         this.repository = repository;
+        this.tipoDocumentoService = tipoDocumentoService;
+        this.rolUsuarioService = rolUsuarioService;
+        this.dptoService = dptoService;
+        this.modalidadContratoService = modalidadContratoService;
+        this.tipoContratoService = tipoContratoService;
+        this.usuarioAdmonService = usuarioAdmonService;
     }
 
-    @PostMapping("sistema/save")
+           
     public Sistema save(Sistema sistema) {
-//        sistema = new Sistema();
-//        sistema.setId(1L);
-//        sistema.setInicializado(true);
+
         this.repository.save(sistema);
         return sistema;
+        
     }
 
-    @GetMapping("sistema/view/")
+    
     public Sistema get() {
         List<Sistema> sistemas = this.repository.findAll();
         if (sistemas.size() > 0) {
@@ -42,5 +64,47 @@ public class SistemaService {
             return new Sistema();
         }
     }
+    
+   
+    @Transactional
+    public void inicializarSistema(Sistema sistema, List<Dpto> dptos, UserDataDto user) throws Exception {
+        this.tipoDocumentoService.initialize();
+        this.rolUsuarioService.initialize();
+        this.modalidadContratoService.initialize();
+        this.tipoContratoService.initialize();
+        this.dptoService.saveAll(dptos);
+        UsuarioAdministrador admon = this.userDataDtoToUserAdmon(user);
+        this.usuarioAdmonService.save(admon);
+        sistema.setInicializado(true);
+        this.save(sistema);
+//        throw new DataIntegrityViolationException("Throwing exception for demoing Rollback!!!");
+    }
+    
+    public UsuarioAdministrador userDataDtoToUserAdmon(UserDataDto dataUser){
+        
+        TipoDocumento tipoDoc = this.tipoDocumentoService.findByDescripcion(dataUser.getTipoDocumento()).get();
+        Persona persona = new PersonaNatural(dataUser.getpNombre(), 
+                                             dataUser.getsNombre(), 
+                                             dataUser.getpApellido(),
+                                             dataUser.getsApellido(), 
+                                             GeneroPersona.get(dataUser.getGenero()), 
+                                             dataUser.getFechaNacimiento(), 
+                                             tipoDoc, 
+                                             dataUser.getNoDocumento());
+        
+        RolUsuario rol = this.rolUsuarioService.findByNombreRol("Administrador").get();
+        UsuarioAdministrador user = new UsuarioAdministrador((PersonaNatural) persona, 
+                                                dataUser.getUserName(), 
+                                                //PasswordEncoder.get().encode(dataUser.getPassword()), 
+                                                dataUser.getPassword(),
+                                                rol, 
+                                                null, null);
+        
+        return user;
+    
+    }
+    
+    
+    
 
 }
