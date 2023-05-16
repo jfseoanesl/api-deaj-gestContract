@@ -19,5 +19,10 @@ public class UsuarioJuridica extends Usuario {
     public UsuarioJuridica(Long idUsuario, PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, boolean estado) {
         super(idUsuario, datosPersona, userName, password, rolUsuario, estado);
     }
+
+    @Override
+    public String getUserType() {
+        return TipoUsuario.JURIDICA.toString();
+    }
     
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Jairo F
  */
 public class DptoDto {
-    
+    private Long idDpto;
     private String codigoDpto;
     private String nombreDpto;
     private List<Ciudad> listCiudades;
@@ -69,6 +69,20 @@ public class DptoDto {
      */
     public void setListCiudades(List<Ciudad> listCiudades) {
         this.listCiudades = listCiudades;
+    }
+
+    /**
+     * @return the idDpto
+     */
+    public Long getIdDpto() {
+        return idDpto;
+    }
+
+    /**
+     * @param idDpto the idDpto to set
+     */
+    public void setIdDpto(Long idDpto) {
+        this.idDpto = idDpto;
     }
     
     

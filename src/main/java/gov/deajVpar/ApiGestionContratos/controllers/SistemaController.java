@@ -4,24 +4,20 @@
  */
 package gov.deajVpar.ApiGestionContratos.controllers;
 
-import gov.deajVpar.ApiGestionContratos.dtos.UserDataDto;
+import gov.deajVpar.ApiGestionContratos.dtos.UsuarioDto;
 import gov.deajVpar.ApiGestionContratos.dtos.DptoDto;
 import gov.deajVpar.ApiGestionContratos.dtos.InitializeDto;
 import gov.deajVpar.ApiGestionContratos.dtos.SistemaDto;
 import gov.deajVpar.ApiGestionContratos.entity.Dpto;
 import gov.deajVpar.ApiGestionContratos.entity.Sistema;
-import gov.deajVpar.ApiGestionContratos.entity.UsuarioAdministrador;
 import gov.deajVpar.ApiGestionContratos.mappersStruct.DptoDtoMapper;
 import gov.deajVpar.ApiGestionContratos.mappersStruct.SistemaDtoMapper;
 import gov.deajVpar.ApiGestionContratos.service.SistemaService;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.mapstruct.factory.Mappers;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,7 +49,7 @@ public class SistemaController {
         List<Dpto>dptoList=null;
         Map<String, DptoDto> listDptoDto=null;
         Sistema sistema = SistemaDtoMapper.INSTANCE.dtoToSistema(dto.getSistema());
-        UserDataDto userDto = null;
+        UsuarioDto userDto = null;
         if (!sistema.isInicializado()) {
             listDptoDto=dto.getDptos();
             userDto = dto.getUserData();

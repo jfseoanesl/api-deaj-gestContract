@@ -45,6 +45,11 @@ public class UsuarioDirector extends Usuario {
     public String toString() {
         return "UsuarioDirector{" + "direccionSeccional=" + direccionSeccional + '}';
     }
+
+    @Override
+    public String getUserType() {
+        return TipoUsuario.DIRECTOR.toString();
+    }
     
     
 }
