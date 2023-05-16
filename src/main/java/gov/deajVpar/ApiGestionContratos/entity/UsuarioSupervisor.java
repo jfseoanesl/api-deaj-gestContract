@@ -70,6 +70,11 @@ public class UsuarioSupervisor extends Usuario{
     public String toString() {
         return "UsuarioSupervisor{" + '}';
     }
+
+    @Override
+    public String getUserType() {
+        return TipoUsuario.SUPERVISOR.toString();
+    }
     
     
 }

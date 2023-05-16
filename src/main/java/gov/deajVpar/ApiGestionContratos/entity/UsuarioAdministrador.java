@@ -23,6 +23,11 @@ public class UsuarioAdministrador extends Usuario{
     public UsuarioAdministrador(PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, DireccionSeccional direccionSeccional, Usuario createdByUser) {
         super(datosPersona, userName, password, rolUsuario, direccionSeccional, createdByUser);
     }
+
+    @Override
+    public String getUserType() {
+        return TipoUsuario.ADMINISTRADOR.toString();
+    }
     
     
 }

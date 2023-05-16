@@ -1,10 +1,11 @@
 package gov.deajVpar.ApiGestionContratos.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
@@ -16,32 +17,32 @@ import java.util.List;
  */
 @Entity
 public class DireccionSeccional {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idDireccion;
+    private Long id;
     private String descripcionSeccional;
-    @OneToMany(mappedBy = "direccionSeccional")
+    @OneToMany(mappedBy = "direccionSeccional",cascade = CascadeType.ALL)
     private List<Usuario> listUsuarios;
-    @OneToMany
+    @ManyToMany
     private List<Dpto> listDptoCoordinados;
-    @OneToMany(mappedBy = "direccion")
+    @OneToMany(mappedBy = "direccion",cascade = CascadeType.ALL)
     private List<Contrato> listContratosSuscritos;
-    @OneToMany(mappedBy = "deajSeccional")
+    @OneToMany(mappedBy = "deajSeccional",cascade = CascadeType.ALL)
     private List<UsuarioSupervisor> listSupervisoresSeccional;
-    @OneToOne
-    @JoinColumn(name = "setupalerta_id")
+    @OneToOne(cascade = CascadeType.ALL)
     private SetupAlertaContrato setupAlertaContrato;
     @OneToOne
-    @JoinColumn(name = "usuario_id")
     private Usuario createdByUser;
     private boolean eliminado;
 
     public DireccionSeccional(String descripcionSeccional, Usuario user) {
-        
+
         this(descripcionSeccional);
-        this.createdByUser=user;
+        this.createdByUser = user;
+        this.setupAlertaContrato=new SetupAlertaContrato();
     }
-    
+
     public DireccionSeccional(String descripcionSeccional) {
         this();
         this.descripcionSeccional = descripcionSeccional;
@@ -49,7 +50,7 @@ public class DireccionSeccional {
 
     public DireccionSeccional(Long idDireccion, String descripcionSeccional, List<Usuario> listUsuarios, List<Dpto> listDptoCoordinados, List<Contrato> listContratosSuscritos, List<UsuarioSupervisor> listSupervisoresSeccional, SetupAlertaContrato setupAlertaContrato, Usuario createdByUser, boolean eliminado) {
         this();
-        this.idDireccion = idDireccion;
+        this.id = idDireccion;
         this.descripcionSeccional = descripcionSeccional;
         this.listUsuarios = listUsuarios;
         this.listDptoCoordinados = listDptoCoordinados;
@@ -62,25 +63,25 @@ public class DireccionSeccional {
 
     public DireccionSeccional() {
         this.listContratosSuscritos = new ArrayList();
-        this.listUsuarios= new ArrayList();;
-        this.listDptoCoordinados =  new ArrayList();
-        this.listSupervisoresSeccional= new ArrayList();
-        this.setupAlertaContrato= new SetupAlertaContrato();
-        this.eliminado=false;
+        this.listUsuarios = new ArrayList();
+        this.listDptoCoordinados = new ArrayList();
+        this.listSupervisoresSeccional = new ArrayList();
+        this.setupAlertaContrato = new SetupAlertaContrato();
+        this.eliminado = false;
     }
 
     /**
      * @return the idDireccion
      */
-    public Long getIdDireccion() {
-        return idDireccion;
+    public Long getId() {
+        return id;
     }
 
     /**
      * @param idDireccion the idDireccion to set
      */
-    public void setIdDireccion(Long idDireccion) {
-        this.idDireccion = idDireccion;
+    public void setId(Long idDireccion) {
+        this.id = idDireccion;
     }
 
     /**
@@ -197,8 +198,7 @@ public class DireccionSeccional {
 
     @Override
     public String toString() {
-        return "DireccionSeccional{" + "idDireccion=" + idDireccion + ", descripcionSeccional=" + descripcionSeccional + ", createdByUser=" + createdByUser + ", eliminado=" + eliminado + '}';
+        return "DireccionSeccional{" + "id=" + id + ", descripcionSeccional=" + descripcionSeccional + ", createdByUser=" + createdByUser + ", eliminado=" + eliminado + '}';
     }
 
-    
 }

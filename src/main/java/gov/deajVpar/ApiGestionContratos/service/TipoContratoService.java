@@ -27,8 +27,8 @@ public class TipoContratoService {
     
     public TipoContrato save(TipoContrato tipo){
         
-       this.repository.save(tipo);
-       return tipo;
+       return this.repository.save(tipo);
+//       return tipo;
         
     }
     

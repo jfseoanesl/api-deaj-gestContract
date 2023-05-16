@@ -8,9 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.awt.Color;
 
@@ -44,10 +42,21 @@ public class SetupAlertaContrato {
     @NotNull
     private Color verdeColor;
     
-    @OneToOne(mappedBy = "setupAlertaContrato")
-    private DireccionSeccional direccionSeccional;
+//    @OneToOne(mappedBy = "setupAlertaContrato")
+//    private DireccionSeccional direccionSeccional;
 
     public SetupAlertaContrato() {
+        this.diasRojo=0;
+        this.diasNaranja=5;
+        this.diasVerde=20;
+        
+        this.naranjaColor=Color.ORANGE;
+        this.rojoColor=Color.RED;
+        this.verdeColor=Color.GREEN;
+        
+        this.prioridadRojo=2;
+        this.prioridadNaranja=1;
+        this.prioridadVerde=0;
     }
 
     public SetupAlertaContrato(int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor) {
@@ -72,7 +81,7 @@ public class SetupAlertaContrato {
         this.rojoColor = rojoColor;
         this.naranjaColor = naranjaColor;
         this.verdeColor = verdeColor;
-        this.direccionSeccional = direccionSeccional;
+//        this.direccionSeccional = direccionSeccional;
     }
 
     public SetupAlertaContrato(Long id, int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor, DireccionSeccional direccionSeccional) {
@@ -86,7 +95,7 @@ public class SetupAlertaContrato {
         this.rojoColor = rojoColor;
         this.naranjaColor = naranjaColor;
         this.verdeColor = verdeColor;
-        this.direccionSeccional = direccionSeccional;
+//        this.direccionSeccional = direccionSeccional;
     }
 
     
@@ -238,19 +247,19 @@ public class SetupAlertaContrato {
         return "SetupAlertaContrato{" + "id=" + id + ", diasRojo=" + diasRojo + ", diasNaranja=" + diasNaranja + ", diasVerde=" + diasVerde + ", prioridadRojo=" + prioridadRojo + ", prioridadNaranja=" + prioridadNaranja + ", prioridadVerde=" + prioridadVerde + ", rojoColor=" + rojoColor + ", naranjaColor=" + naranjaColor + ", verdeColor=" + verdeColor + '}';
     }
 
-    /**
-     * @return the direccionSeccional
-     */
-    public DireccionSeccional getDireccionSeccional() {
-        return direccionSeccional;
-    }
-
-    /**
-     * @param direccionSeccional the direccionSeccional to set
-     */
-    public void setDireccionSeccional(DireccionSeccional direccionSeccional) {
-        this.direccionSeccional = direccionSeccional;
-    }
-    
+//    /**
+//     * @return the direccionSeccional
+//     */
+//    public DireccionSeccional getDireccionSeccional() {
+//        return direccionSeccional;
+//    }
+//
+//    /**
+//     * @param direccionSeccional the direccionSeccional to set
+//     */
+//    public void setDireccionSeccional(DireccionSeccional direccionSeccional) {
+//        this.direccionSeccional = direccionSeccional;
+//    }
+//    
     
 }

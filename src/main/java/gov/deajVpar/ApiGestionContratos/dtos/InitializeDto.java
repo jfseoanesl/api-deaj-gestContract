@@ -14,12 +14,12 @@ import java.util.Map;
 public class InitializeDto {
     private SistemaDto sistema;
     private Map<String, DptoDto> dptos;
-    private UserDataDto userData;
+    private UsuarioDto userData;
 
     public InitializeDto() {
     }
 
-    public InitializeDto(SistemaDto sistema, Map<String, DptoDto> dptos, UserDataDto userData) {
+    public InitializeDto(SistemaDto sistema, Map<String, DptoDto> dptos, UsuarioDto userData) {
         this.sistema = sistema;
         this.dptos = dptos;
         this.userData = userData;
@@ -58,14 +58,14 @@ public class InitializeDto {
     /**
      * @return the userAdmon
      */
-    public UserDataDto getUserData() {
+    public UsuarioDto getUserData() {
         return userData;
     }
 
     /**
      * @param userAdmon the userAdmon to set
      */
-    public void setUserData(UserDataDto userData) {
+    public void setUserData(UsuarioDto userData) {
         this.userData = userData;
     }
     

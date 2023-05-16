@@ -10,9 +10,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotNull;
 
 /**
  *
@@ -23,7 +21,7 @@ import jakarta.validation.constraints.NotNull;
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idUsuario;
+    private Long id;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "persona_id")
     private PersonaNatural datosPersona;
@@ -41,10 +39,11 @@ public abstract class Usuario {
     private boolean estado;
 
     public Usuario() {
+        this.datosPersona = new PersonaNatural();
     }
 
     public Usuario(Long idUsuario, PersonaNatural datosPersona, String userName, String password, RolUsuario rolUsuario, boolean estado) {
-        this.idUsuario = idUsuario;
+        this.id = idUsuario;
         this.datosPersona = datosPersona;
         this.userName = userName;
         this.password = password;
@@ -62,19 +61,7 @@ public abstract class Usuario {
         this.estado=false;
     }
 
-    /**
-     * @return the idUsuario
-     */
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    /**
-     * @param idUsuario the idUsuario to set
-     */
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+    
 
     /**
      * @return the datosPersona
@@ -148,8 +135,23 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", datosPersona=" + datosPersona + ", userName=" + userName + ", password=" + password + ", rolUsuario=" + rolUsuario + ", estado=" + estado + '}';
+        return "Usuario{" + "idUsuario=" + getId() + ", datosPersona=" + datosPersona + ", userName=" + userName + ", password=" + password + ", rolUsuario=" + rolUsuario + ", estado=" + estado + '}';
+    }
+    
+    public abstract String getUserType();
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
     }
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
     
 }

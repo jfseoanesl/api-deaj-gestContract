@@ -10,8 +10,9 @@ import java.time.LocalDate;
  *
  * @author Jairo F
  */
-public class UserDataDto {
-    private String tipoDocumento;
+public class UsuarioDto {
+    private Long id;
+    private TipoDocumentoDto tipoDocumento;
     private String noDocumento;
     private String pNombre;
     private String sNombre;
@@ -21,11 +22,14 @@ public class UserDataDto {
     private LocalDate fechaNacimiento;
     private String userName;
     private String password;
+    private String userType;
 
-    public UserDataDto() {
+    public UsuarioDto() {
+        this.tipoDocumento = new TipoDocumentoDto();
     }
 
-    public UserDataDto(String tipoDocumento, String noDocumento, String pNombre, String sNombre, String pApellido, String sApellido, String genero, LocalDate fechaNacimiento, String userName, String password) {
+    public UsuarioDto(Long id, TipoDocumentoDto tipoDocumento, String noDocumento, String pNombre, String sNombre, String pApellido, String sApellido, String genero, LocalDate fechaNacimiento, String userName, String password, String userType) {
+        this.id = id;
         this.tipoDocumento = tipoDocumento;
         this.noDocumento = noDocumento;
         this.pNombre = pNombre;
@@ -36,21 +40,28 @@ public class UserDataDto {
         this.fechaNacimiento = fechaNacimiento;
         this.userName = userName;
         this.password = password;
+        this.userType = userType;
     }
 
-    /**
-     * @return the tipoDocumento
-     */
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    /**
-     * @param tipoDocumento the tipoDocumento to set
-     */
-    public void setTipoDocumento(String tipoDocumento) {
+    public UsuarioDto(TipoDocumentoDto tipoDocumento, String noDocumento, String pNombre, String sNombre, String pApellido, String sApellido, String genero, LocalDate fechaNacimiento, String userName, String password, String userType) {
         this.tipoDocumento = tipoDocumento;
+        this.noDocumento = noDocumento;
+        this.pNombre = pNombre;
+        this.sNombre = sNombre;
+        this.pApellido = pApellido;
+        this.sApellido = sApellido;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
+        this.userName = userName;
+        this.password = password;
+        this.userType = userType;
     }
+
+    
+
+   
+
+    
 
     /**
      * @return the noDocumento
@@ -177,6 +188,55 @@ public class UserDataDto {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * @return the userType
+     */
+    public String getUserType() {
+        return userType;
+    }
+
+    /**
+     * @param userType the userType to set
+     */
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    /**
+     * @return the tipoDocumento
+     */
+    public TipoDocumentoDto getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    /**
+     * @param tipoDocumento the tipoDocumento to set
+     */
+    public void setTipoDocumento(TipoDocumentoDto tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioDto{" + "id=" + id + ", tipoDocumento=" + tipoDocumento + ", noDocumento=" + noDocumento + ", pNombre=" + pNombre + ", sNombre=" + sNombre + ", pApellido=" + pApellido + ", sApellido=" + sApellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + ", userName=" + userName + ", password=" + password + ", userType=" + userType + '}';
+    }
+
+    
     
     
 }

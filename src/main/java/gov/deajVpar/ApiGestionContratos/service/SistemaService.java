@@ -4,7 +4,7 @@
  */
 package gov.deajVpar.ApiGestionContratos.service;
 
-import gov.deajVpar.ApiGestionContratos.dtos.UserDataDto;
+import gov.deajVpar.ApiGestionContratos.dtos.UsuarioDto;
 import gov.deajVpar.ApiGestionContratos.entity.Dpto;
 import gov.deajVpar.ApiGestionContratos.entity.GeneroPersona;
 import gov.deajVpar.ApiGestionContratos.entity.Persona;
@@ -12,11 +12,8 @@ import gov.deajVpar.ApiGestionContratos.entity.PersonaNatural;
 import gov.deajVpar.ApiGestionContratos.entity.RolUsuario;
 import gov.deajVpar.ApiGestionContratos.entity.Sistema;
 import gov.deajVpar.ApiGestionContratos.entity.TipoDocumento;
-import gov.deajVpar.ApiGestionContratos.entity.Usuario;
 import gov.deajVpar.ApiGestionContratos.entity.UsuarioAdministrador;
 import gov.deajVpar.ApiGestionContratos.repository.SistemaRepository;
-import gov.deajVpar.ApiGestionContratos.utility.PasswordEncoder;
-import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,7 +64,7 @@ public class SistemaService {
     
    
     @Transactional
-    public void inicializarSistema(Sistema sistema, List<Dpto> dptos, UserDataDto user) throws Exception {
+    public void inicializarSistema(Sistema sistema, List<Dpto> dptos, UsuarioDto user) throws Exception {
         this.tipoDocumentoService.initialize();
         this.rolUsuarioService.initialize();
         this.modalidadContratoService.initialize();
@@ -80,9 +77,9 @@ public class SistemaService {
 //        throw new DataIntegrityViolationException("Throwing exception for demoing Rollback!!!");
     }
     
-    public UsuarioAdministrador userDataDtoToUserAdmon(UserDataDto dataUser){
+    public UsuarioAdministrador userDataDtoToUserAdmon(UsuarioDto dataUser){
         
-        TipoDocumento tipoDoc = this.tipoDocumentoService.findByDescripcion(dataUser.getTipoDocumento()).get();
+        TipoDocumento tipoDoc = this.tipoDocumentoService.findByDescripcion(dataUser.getTipoDocumento().getDescripcion()).get();
         Persona persona = new PersonaNatural(dataUser.getpNombre(), 
                                              dataUser.getsNombre(), 
                                              dataUser.getpApellido(),
