@@ -153,5 +153,33 @@ public abstract class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
+
+    /**
+     * @return the direccionSeccional
+     */
+    public DireccionSeccional getDireccionSeccional() {
+        return direccionSeccional;
+    }
+
+    /**
+     * @param direccionSeccional the direccionSeccional to set
+     */
+    public void setDireccionSeccional(DireccionSeccional direccionSeccional) {
+        this.direccionSeccional = direccionSeccional;
+    }
+
+    /**
+     * @return the createdByUser
+     */
+    public Usuario getCreatedByUser() {
+        return createdByUser;
+    }
+
+    /**
+     * @param createdByUser the createdByUser to set
+     */
+    public void setCreatedByUser(Usuario createdByUser) {
+        this.createdByUser = createdByUser;
+    }
     
 }

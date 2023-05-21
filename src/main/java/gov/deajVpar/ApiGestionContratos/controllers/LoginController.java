@@ -10,6 +10,7 @@ import gov.deajVpar.ApiGestionContratos.dtos.SesionUserDto;
 import gov.deajVpar.ApiGestionContratos.dtos.UsuarioDto;
 import gov.deajVpar.ApiGestionContratos.entity.PermisoUsuario;
 import gov.deajVpar.ApiGestionContratos.entity.Usuario;
+import gov.deajVpar.ApiGestionContratos.mappersStruct.DeajMapperImp;
 import gov.deajVpar.ApiGestionContratos.mappersStruct.PermisoUserDtoMapper;
 import gov.deajVpar.ApiGestionContratos.mappersStruct.UserDtoMapperImp;
 import gov.deajVpar.ApiGestionContratos.service.LoginService;
@@ -57,15 +58,14 @@ public class LoginController {
             sesion.setUserPermisos(permisosDto);
             UserDtoMapperImp mapper = new UserDtoMapperImp();
             UsuarioDto userDto = mapper.toDTO(userLogin);
-//            System.out.println("obj: "+userLogin);
-//            System.out.println("dto: "+userDto);
             sesion.setUser(userDto);
+            DeajMapperImp mapperDeaj = new DeajMapperImp();
+            sesion.setUserDeaj(mapperDeaj.toDTO(userLogin.getDireccionSeccional()));
             
         }
         else{
             sesion.setEstado(false);
         }
-//        System.out.println(sesion);
         return sesion;
         
     }

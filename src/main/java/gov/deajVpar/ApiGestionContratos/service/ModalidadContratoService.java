@@ -40,7 +40,7 @@ public class ModalidadContratoService {
     
     public List<ModalidadContrato> getAll(){
         
-        return this.repository.findAll();
+        return this.repository.findByEliminado(false);
         
     }
     
@@ -48,6 +48,16 @@ public class ModalidadContratoService {
     
         return this.repository.findById(id);
         
+    }
+    
+    public ModalidadContrato deleteWithSubmodalidad(Long id){
+        
+        ModalidadContrato obj = this.findById(id).get();
+        obj.setEliminado(true);
+        for(SubModalidadContrato s: obj.getListSubModalidades()){
+            s.setEliminado(true);
+        }
+        return this.save(obj);
     }
     
     public void initialize(){

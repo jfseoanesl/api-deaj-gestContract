@@ -14,22 +14,31 @@ import org.mapstruct.Mapper;
  *
  * @author Jairo F
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public abstract class DeajMapper {
 
+    private UserDtoMapperImp mapperUser;
+
+    public DeajMapper() {
+        this.mapperUser = new UserDtoMapperImp();
+    }
+
     public DireccionSeccionalDto toDTO(DireccionSeccional deaj) {
+        if (deaj != null) {
+            DireccionSeccionalDto dto = new DireccionSeccionalDto();
+            dto.setDescripcionSeccional(deaj.getDescripcionSeccional());
+            dto.setEliminado(deaj.isEliminado());
+            dto.setId(deaj.getId());
+            for (Dpto d : deaj.getListDptoCoordinados()) {
+                dto.getListDptoCoordinados().add(DptoDtoMapper.INSTANCE.toDto(d));
+            }
+            dto.setSetupAlerta(SetupAlertaDtoMapper.INSTANCE.ToDto(deaj.getSetupAlertaContrato()));
+            dto.setCreatedByUser(this.mapperUser.toDTO(deaj.getCreatedByUser()));
 
-        DireccionSeccionalDto dto = new DireccionSeccionalDto();
-        dto.setDescripcionSeccional(deaj.getDescripcionSeccional());
-        dto.setEliminado(deaj.isEliminado());
-        dto.setId(deaj.getId());
-        for (Dpto d : deaj.getListDptoCoordinados()) {
-            dto.getListDptoCoordinados().add(DptoDtoMapper.INSTANCE.toDto(d));
+            return dto;
+        } else {
+            return null;
         }
-        UserDtoMapperImp dtoMapper = new UserDtoMapperImp();
-        dto.setCreatedByUser(dtoMapper.toDTO(deaj.getCreatedByUser()));
-
-        return dto;
     }
 
     public DireccionSeccional toOBJ(DireccionSeccionalDto dto) {
@@ -38,12 +47,14 @@ public abstract class DeajMapper {
         deaj.setId(dto.getId());
         deaj.setDescripcionSeccional(dto.getDescripcionSeccional());
         deaj.setEliminado(dto.isEliminado());
-        UserDtoMapperImp dtoMapper = new UserDtoMapperImp();
-        deaj.setCreatedByUser(dtoMapper.toObj(dto.getCreatedByUser()));
+        deaj.setCreatedByUser(this.mapperUser.toObj(dto.getCreatedByUser()));
+
         for (DptoDto d : dto.getListDptoCoordinados()) {
             deaj.getListDptoCoordinados().add(DptoDtoMapper.INSTANCE.toDpto(d));
         }
         
+        deaj.setSetupAlertaContrato(SetupAlertaDtoMapper.INSTANCE.ToObj(dto.getSetupAlerta()));
+
         return deaj;
     }
 

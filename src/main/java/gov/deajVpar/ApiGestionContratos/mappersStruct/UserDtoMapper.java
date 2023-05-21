@@ -9,22 +9,20 @@ import gov.deajVpar.ApiGestionContratos.entity.GeneroPersona;
 import gov.deajVpar.ApiGestionContratos.entity.Usuario;
 import gov.deajVpar.ApiGestionContratos.entity.UsuarioAdministrador;
 import gov.deajVpar.ApiGestionContratos.service.TipoDocumentoService;
-import java.time.LocalDate;
 import org.mapstruct.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Jairo F
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public abstract class UserDtoMapper {
     
-    
-    private TipoDocumentoService tipoDocService;
-
    
     public UsuarioDto toDTO(Usuario usuario) {
+        if(usuario==null)
+            return null;
+        
         UsuarioDto instance = new UsuarioDto();
         instance.setId(usuario.getId());
         instance.setFechaNacimiento(usuario.getDatosPersona().getFechaNacimiento());
@@ -43,6 +41,8 @@ public abstract class UserDtoMapper {
     
     public UsuarioAdministrador toObj(UsuarioDto dto)
     {   
+        if(dto==null)
+            return null;
         UsuarioAdministrador instance=new UsuarioAdministrador();
         instance.setId(dto.getId());
         instance.getDatosPersona().setFechaNacimiento(dto.getFechaNacimiento());

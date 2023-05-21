@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import java.awt.Color;
 
 /**
@@ -35,53 +34,40 @@ public class SetupAlertaContrato {
     @Min(0)
     private int prioridadVerde;
     
-    @NotNull
-    private Color rojoColor;
-    @NotNull
-    private Color naranjaColor;
-    @NotNull
-    private Color verdeColor;
     
 //    @OneToOne(mappedBy = "setupAlertaContrato")
 //    private DireccionSeccional direccionSeccional;
 
     public SetupAlertaContrato() {
-        this.diasRojo=0;
-        this.diasNaranja=5;
-        this.diasVerde=20;
+        this.diasRojo=5;
+        this.diasNaranja=10;
+        this.diasVerde=1;
         
-        this.naranjaColor=Color.ORANGE;
-        this.rojoColor=Color.RED;
-        this.verdeColor=Color.GREEN;
-        
-        this.prioridadRojo=2;
+               this.prioridadRojo=2;
         this.prioridadNaranja=1;
         this.prioridadVerde=0;
     }
 
     public SetupAlertaContrato(int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor) {
+        this();
         this.diasRojo = diasRojo;
         this.diasNaranja = diasNaranja;
         this.diasVerde = diasVerde;
         this.prioridadRojo = prioridadRojo;
         this.prioridadNaranja = prioridadNaranja;
         this.prioridadVerde = prioridadVerde;
-        this.rojoColor = rojoColor;
-        this.naranjaColor = naranjaColor;
-        this.verdeColor = verdeColor;
+
     }
 
     public SetupAlertaContrato(int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor, DireccionSeccional direccionSeccional) {
+        this();
         this.diasRojo = diasRojo;
         this.diasNaranja = diasNaranja;
         this.diasVerde = diasVerde;
         this.prioridadRojo = prioridadRojo;
         this.prioridadNaranja = prioridadNaranja;
         this.prioridadVerde = prioridadVerde;
-        this.rojoColor = rojoColor;
-        this.naranjaColor = naranjaColor;
-        this.verdeColor = verdeColor;
-//        this.direccionSeccional = direccionSeccional;
+
     }
 
     public SetupAlertaContrato(Long id, int diasRojo, int diasNaranja, int diasVerde, int prioridadRojo, int prioridadNaranja, int prioridadVerde, Color rojoColor, Color naranjaColor, Color verdeColor, DireccionSeccional direccionSeccional) {
@@ -92,10 +78,7 @@ public class SetupAlertaContrato {
         this.prioridadRojo = prioridadRojo;
         this.prioridadNaranja = prioridadNaranja;
         this.prioridadVerde = prioridadVerde;
-        this.rojoColor = rojoColor;
-        this.naranjaColor = naranjaColor;
-        this.verdeColor = verdeColor;
-//        this.direccionSeccional = direccionSeccional;
+
     }
 
     
@@ -200,66 +183,5 @@ public class SetupAlertaContrato {
         this.id = id;
     }
 
-    /**
-     * @return the rojoColor
-     */
-    public Color getRojoColor() {
-        return rojoColor;
-    }
-
-    /**
-     * @param rojoColor the rojoColor to set
-     */
-    public void setRojoColor(Color rojoColor) {
-        this.rojoColor = rojoColor;
-    }
-
-    /**
-     * @return the naranjaColor
-     */
-    public Color getNaranjaColor() {
-        return naranjaColor;
-    }
-
-    /**
-     * @param naranjaColor the naranjaColor to set
-     */
-    public void setNaranjaColor(Color naranjaColor) {
-        this.naranjaColor = naranjaColor;
-    }
-
-    /**
-     * @return the verdeColor
-     */
-    public Color getVerdeColor() {
-        return verdeColor;
-    }
-
-    /**
-     * @param verdeColor the verdeColor to set
-     */
-    public void setVerdeColor(Color verdeColor) {
-        this.verdeColor = verdeColor;
-    }
-
-    @Override
-    public String toString() {
-        return "SetupAlertaContrato{" + "id=" + id + ", diasRojo=" + diasRojo + ", diasNaranja=" + diasNaranja + ", diasVerde=" + diasVerde + ", prioridadRojo=" + prioridadRojo + ", prioridadNaranja=" + prioridadNaranja + ", prioridadVerde=" + prioridadVerde + ", rojoColor=" + rojoColor + ", naranjaColor=" + naranjaColor + ", verdeColor=" + verdeColor + '}';
-    }
-
-//    /**
-//     * @return the direccionSeccional
-//     */
-//    public DireccionSeccional getDireccionSeccional() {
-//        return direccionSeccional;
-//    }
-//
-//    /**
-//     * @param direccionSeccional the direccionSeccional to set
-//     */
-//    public void setDireccionSeccional(DireccionSeccional direccionSeccional) {
-//        this.direccionSeccional = direccionSeccional;
-//    }
-//    
-    
+   
 }

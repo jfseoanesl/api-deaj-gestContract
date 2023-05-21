@@ -2,17 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gov.deajVpar.ApiGestionContratos.entity;
+package gov.deajVpar.ApiGestionContratos.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
+import gov.deajVpar.ApiGestionContratos.entity.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,56 +12,45 @@ import java.util.List;
  *
  * @author Jairo F
  */
-@Entity
-public class SubModalidadContrato {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @NotBlank
+public class SubModalidadDto {
+     private Long id;
     private String descripcionSubModalidad;
-    @NotBlank
     private String nombreSubModalidad;
-    @OneToMany(mappedBy = "subModalidad")
-    private List<Contrato> listContratosRegistrados;
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario createByUser;
+    private List<ContratoDto> listContratosRegistrados;
+    private UsuarioDto createByUser;
     private boolean eliminado;
 
-    public SubModalidadContrato() {
-        this.listContratosRegistrados= new ArrayList();
+    public SubModalidadDto() {
         this.eliminado=false;
+        this.listContratosRegistrados=new ArrayList();
     }
 
-    public SubModalidadContrato(String descripcionSubModalidad, String nombreSubModalidad, Usuario createByUser) {
-        this();
+    public SubModalidadDto(String descripcionSubModalidad, String nombreSubModalidad, UsuarioDto createByUser) {
         this.descripcionSubModalidad = descripcionSubModalidad;
         this.nombreSubModalidad = nombreSubModalidad;
         this.createByUser = createByUser;
-        
     }
 
-    public SubModalidadContrato(Long idSubModalidad, String descripcionSubModalidad, String nombreSubModalidad, List<Contrato> listContratosRegistrados, Usuario createByUser, boolean eliminado) {
-        this.id = idSubModalidad;
+    public SubModalidadDto(Long id, String descripcionSubModalidad, String nombreSubModalidad, List<ContratoDto> listContratosRegistrados, UsuarioDto createByUser) {
+        this.id = id;
         this.descripcionSubModalidad = descripcionSubModalidad;
         this.nombreSubModalidad = nombreSubModalidad;
         this.listContratosRegistrados = listContratosRegistrados;
         this.createByUser = createByUser;
-        this.eliminado = eliminado;
     }
 
     /**
-     * @return the idSubModalidad
+     * @return the id
      */
-    public Long getIdSubModalidad() {
+    public Long getId() {
         return id;
     }
 
     /**
-     * @param idSubModalidad the idSubModalidad to set
+     * @param id the id to set
      */
-    public void setIdSubModalidad(Long idSubModalidad) {
-        this.id = idSubModalidad;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -103,28 +84,28 @@ public class SubModalidadContrato {
     /**
      * @return the listContratosRegistrados
      */
-    public List<Contrato> getListContratosRegistrados() {
+    public List<ContratoDto> getListContratosRegistrados() {
         return listContratosRegistrados;
     }
 
     /**
      * @param listContratosRegistrados the listContratosRegistrados to set
      */
-    public void setListContratosRegistrados(List<Contrato> listContratosRegistrados) {
+    public void setListContratosRegistrados(List<ContratoDto> listContratosRegistrados) {
         this.listContratosRegistrados = listContratosRegistrados;
     }
 
     /**
      * @return the createByUser
      */
-    public Usuario getCreateByUser() {
+    public UsuarioDto getCreateByUser() {
         return createByUser;
     }
 
     /**
      * @param createByUser the createByUser to set
      */
-    public void setCreateByUser(Usuario createByUser) {
+    public void setCreateByUser(UsuarioDto createByUser) {
         this.createByUser = createByUser;
     }
 
