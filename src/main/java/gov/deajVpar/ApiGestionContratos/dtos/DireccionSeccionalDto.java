@@ -17,6 +17,7 @@ public class DireccionSeccionalDto {
     private List<DptoDto> listDptoCoordinados;
     private UsuarioDto createdByUser;
     private boolean eliminado;
+    private SetupAlertaDto setupAlerta;
 
     public DireccionSeccionalDto() {
         this.listDptoCoordinados = new ArrayList();
@@ -109,6 +110,20 @@ public class DireccionSeccionalDto {
     @Override
     public String toString() {
         return "DireccionSeccionalDto{" + "id=" + id + ", descripcionSeccional=" + descripcionSeccional + ", listDptoCoordinados=" + listDptoCoordinados + ", createdByUser=" + createdByUser + ", eliminado=" + eliminado + '}';
+    }
+
+    /**
+     * @return the setupAlerta
+     */
+    public SetupAlertaDto getSetupAlerta() {
+        return setupAlerta;
+    }
+
+    /**
+     * @param setupAlerta the setupAlerta to set
+     */
+    public void setSetupAlerta(SetupAlertaDto setupAlerta) {
+        this.setupAlerta = setupAlerta;
     }
 
     

@@ -40,7 +40,7 @@ public class TipoContratoService {
     
     public List<TipoContrato> getAll(){
         
-        return this.repository.findAll();
+        return this.repository.findByEliminado(false);
         
     }
     

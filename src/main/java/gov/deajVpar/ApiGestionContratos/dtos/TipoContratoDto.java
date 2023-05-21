@@ -2,16 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gov.deajVpar.ApiGestionContratos.entity;
+package gov.deajVpar.ApiGestionContratos.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,37 +11,23 @@ import java.util.List;
  *
  * @author Jairo F
  */
-@Entity
-public class TipoContrato {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class TipoContratoDto {
+   
     private Long id;
-    @NotBlank
     private String descripcion;
-    @OneToMany(mappedBy = "tipoContrato")
-    private List<Contrato> listContratos;
-    @OneToOne
-    private Usuario crateByuser;
+    private List<ContratoDto> listContratos;
+    private UsuarioDto crateByuser;
     private boolean eliminado;
 
-    public TipoContrato() {
-        this.listContratos= new ArrayList();
-        this.eliminado=false;
-    }
-    
-    public TipoContrato(String descripcion, Usuario crateByuser) {
-        this();
-        this.descripcion = descripcion;
-        this.crateByuser = crateByuser;
-        
+    public TipoContratoDto() {
+        this.listContratos = new ArrayList();
+        this.eliminado = false;
     }
 
-    public TipoContrato(Long id, String descripcion, List<Contrato> listContratos, Usuario crateByuser, boolean eliminado) {
+    public TipoContratoDto(Long id, String descripcion) {
+        this();
         this.id = id;
         this.descripcion = descripcion;
-        this.listContratos = listContratos;
-        this.crateByuser = crateByuser;
-        this.eliminado = eliminado;
     }
 
     /**
@@ -83,28 +61,28 @@ public class TipoContrato {
     /**
      * @return the listContratos
      */
-    public List<Contrato> getListContratos() {
+    public List<ContratoDto> getListContratos() {
         return listContratos;
     }
 
     /**
      * @param listContratos the listContratos to set
      */
-    public void setListContratos(List<Contrato> listContratos) {
+    public void setListContratos(List<ContratoDto> listContratos) {
         this.listContratos = listContratos;
     }
 
     /**
      * @return the crateByuser
      */
-    public Usuario getCrateByuser() {
+    public UsuarioDto getCrateByuser() {
         return crateByuser;
     }
 
     /**
      * @param crateByuser the crateByuser to set
      */
-    public void setCrateByuser(Usuario crateByuser) {
+    public void setCrateByuser(UsuarioDto crateByuser) {
         this.crateByuser = crateByuser;
     }
 
@@ -122,7 +100,10 @@ public class TipoContrato {
         this.eliminado = eliminado;
     }
 
-    
+    @Override
+    public String toString() {
+        return "TipoContratoDto{" + "id=" + id + ", descripcion=" + descripcion + ", listContratos=" + listContratos + ", crateByuser=" + crateByuser + ", eliminado=" + eliminado + '}';
+    }
     
     
 }

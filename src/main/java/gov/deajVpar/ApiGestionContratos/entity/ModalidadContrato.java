@@ -20,12 +20,12 @@ import java.util.List;
 public class ModalidadContrato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idModalidad;
+    private Long id;
     @NotBlank
     private String descripcionModalidad;
     @NotBlank
     private String nombreModalidad;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<SubModalidadContrato> listSubModalidades;
     @OneToMany(mappedBy = "modalidad")
     private List<Contrato> listContratosRegistrados;
@@ -48,7 +48,7 @@ public class ModalidadContrato {
     }
 
     public ModalidadContrato(Long idModalidad, String descripcionModalidad, String nombreModalidad, List<Contrato> listContratosRegistrados, Usuario createByUser, boolean eliminado) {
-        this.idModalidad = idModalidad;
+        this.id = idModalidad;
         this.descripcionModalidad = descripcionModalidad;
         this.nombreModalidad = nombreModalidad;
         this.listContratosRegistrados = listContratosRegistrados;
@@ -61,14 +61,14 @@ public class ModalidadContrato {
      * @return the idModalidad
      */
     public Long getIdModalidad() {
-        return idModalidad;
+        return id;
     }
 
     /**
      * @param idModalidad the idModalidad to set
      */
     public void setIdModalidad(Long idModalidad) {
-        this.idModalidad = idModalidad;
+        this.id = idModalidad;
     }
 
     /**
@@ -157,7 +157,7 @@ public class ModalidadContrato {
 
     @Override
     public String toString() {
-        return "ModalidadContrato{" + "idModalidad=" + idModalidad + ", descripcionModalidad=" + descripcionModalidad + ", nombreModalidad=" + nombreModalidad + ", listContratosRegistrados=" + listContratosRegistrados + ", createByUser=" + createByUser + ", eliminado=" + eliminado + '}';
+        return "ModalidadContrato{" + "idModalidad=" + id + ", descripcionModalidad=" + descripcionModalidad + ", nombreModalidad=" + nombreModalidad + ", listContratosRegistrados=" + listContratosRegistrados + ", createByUser=" + createByUser + ", eliminado=" + eliminado + '}';
     }
 
     public void addSubModalidad(SubModalidadContrato sub){
