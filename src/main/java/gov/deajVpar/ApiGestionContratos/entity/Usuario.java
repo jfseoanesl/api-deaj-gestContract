@@ -17,18 +17,18 @@ import jakarta.persistence.OneToOne;
  * @author Jairo F
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "persona_id")
     private PersonaNatural datosPersona;
     @Column(unique = true)
     private String userName;
     private String password;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "rolusuario_id")
     private RolUsuario rolUsuario;
     @ManyToOne
@@ -181,5 +181,6 @@ public abstract class Usuario {
     public void setCreatedByUser(Usuario createdByUser) {
         this.createdByUser = createdByUser;
     }
+    
     
 }

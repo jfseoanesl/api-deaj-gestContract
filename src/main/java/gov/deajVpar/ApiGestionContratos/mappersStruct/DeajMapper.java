@@ -17,10 +17,10 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public abstract class DeajMapper {
 
-    private UserDtoMapperImp mapperUser;
+    private UsuarioDtoMapperImp mapperUser;
 
     public DeajMapper() {
-        this.mapperUser = new UserDtoMapperImp();
+        this.mapperUser = new UsuarioDtoMapperImp();
     }
 
     public DireccionSeccionalDto toDTO(DireccionSeccional deaj) {

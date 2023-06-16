@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotNull;
 public class TipoDocumento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idTipoDocumento;
+    private Long id;
     @NotBlank
     private String tipo;
     @NotBlank
@@ -30,7 +30,7 @@ public class TipoDocumento {
 
     public TipoDocumento(Long idTipoDocumento, String tipo, String descripcion, TipoPersona tipoPersona) {
         this();
-        this.idTipoDocumento = idTipoDocumento;
+        this.id = idTipoDocumento;
         this.descripcion = descripcion;
         this.tipoPersona = tipoPersona;
         this.tipo=tipo;
@@ -44,20 +44,33 @@ public class TipoDocumento {
         this.eliminado=false;
     }
     
-    
 
     /**
-     * @return the idTipoDocumento
+     * @return the id
      */
-    public Long getIdTipoDocumento() {
-        return idTipoDocumento;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param idTipoDocumento the idTipoDocumento to set
+     * @param id the id to set
      */
-    public void setIdTipoDocumento(Long idTipoDocumento) {
-        this.idTipoDocumento = idTipoDocumento;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     /**
@@ -75,17 +88,17 @@ public class TipoDocumento {
     }
 
     /**
-     * @return the tipo
+     * @return the tipoPersona
      */
-    public TipoPersona getTipo() {
+    public TipoPersona getTipoPersona() {
         return tipoPersona;
     }
 
     /**
-     * @param tipo the tipo to set
+     * @param tipoPersona the tipoPersona to set
      */
-    public void setTipo(TipoPersona tipo) {
-        this.tipoPersona = tipo;
+    public void setTipoPersona(TipoPersona tipoPersona) {
+        this.tipoPersona = tipoPersona;
     }
 
     /**
@@ -100,11 +113,6 @@ public class TipoDocumento {
      */
     public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
-    }
-
-    @Override
-    public String toString() {
-        return "TipoDocumento{" + "idTipoDocumento=" + idTipoDocumento + ", descripcion=" + descripcion + ", tipoPersona=" + tipoPersona + ", eliminado=" + eliminado + '}';
     }
     
     

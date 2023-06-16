@@ -4,10 +4,13 @@
  */
 package gov.deajVpar.ApiGestionContratos.mappersStruct;
 
+import org.mapstruct.Mapper;
+
 /**
  *
  * @author Jairo F
  */
-public class UserDtoMapperImp extends UserDtoMapper {
+
+public class RolUsuarioDtoMapperImp extends RolUsuarioDtoMapper {
     
 }

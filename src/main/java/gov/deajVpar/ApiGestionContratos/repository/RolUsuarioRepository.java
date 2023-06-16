@@ -5,6 +5,8 @@
 package gov.deajVpar.ApiGestionContratos.repository;
 
 import gov.deajVpar.ApiGestionContratos.entity.RolUsuario;
+import gov.deajVpar.ApiGestionContratos.entity.TipoUsuario;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,4 +17,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface RolUsuarioRepository extends JpaRepository<RolUsuario,Long> {
     
     public Optional<RolUsuario> findByNombreRol(String nombre);
+    public List<RolUsuario> findByTipoUsuarioAndEliminado(TipoUsuario tipo, boolean eliminado);
+    public List<RolUsuario> findByEliminado( boolean eliminado);
 }

@@ -16,11 +16,11 @@ import org.mapstruct.Mapper;
  */
 @Mapper
 public class ModalidadContratoDtoMapper {
-    private UserDtoMapper userMapper;
+    private UsuarioDtoMapper userMapper;
     private SubModalidadDtoMapper subModalidadMapper;
 
     public ModalidadContratoDtoMapper() {
-        this.userMapper = new UserDtoMapperImp();
+        this.userMapper = new UsuarioDtoMapperImp();
         this.subModalidadMapper = new SubModalidadDtoMapperImp();
     }
     

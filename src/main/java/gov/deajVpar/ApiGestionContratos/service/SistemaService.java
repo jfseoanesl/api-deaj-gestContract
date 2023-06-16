@@ -66,10 +66,10 @@ public class SistemaService {
     @Transactional
     public void inicializarSistema(Sistema sistema, List<Dpto> dptos, UsuarioDto user) throws Exception {
         this.tipoDocumentoService.initialize();
-        this.rolUsuarioService.initialize();
         this.modalidadContratoService.initialize();
         this.tipoContratoService.initialize();
         this.dptoService.saveAll(dptos);
+        this.rolUsuarioService.initialize();
         UsuarioAdministrador admon = this.userDataDtoToUserAdmon(user);
         this.usuarioAdmonService.save(admon);
         sistema.setInicializado(true);

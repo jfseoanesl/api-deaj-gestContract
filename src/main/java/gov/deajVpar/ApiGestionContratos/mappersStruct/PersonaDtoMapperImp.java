@@ -8,6 +8,6 @@ package gov.deajVpar.ApiGestionContratos.mappersStruct;
  *
  * @author Jairo F
  */
-public class UserDtoMapperImp extends UserDtoMapper {
+public class PersonaDtoMapperImp extends PersonaDtoMapper {
     
 }

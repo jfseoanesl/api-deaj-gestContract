@@ -19,6 +19,6 @@ public interface PermisoUserDtoMapper {
     PermisoUserDtoMapper INSTANCE = Mappers.getMapper(PermisoUserDtoMapper.class);
     
     PermisoUserDto toDto(PermisoUsuario obj);
-    PermisoUsuario toObj(PermisoUserDtoMapper dto);
+    PermisoUsuario toObj(PermisoUserDto dto);
     
 }

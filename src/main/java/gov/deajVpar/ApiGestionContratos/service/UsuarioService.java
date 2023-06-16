@@ -4,6 +4,8 @@
  */
 package gov.deajVpar.ApiGestionContratos.service;
 
+import gov.deajVpar.ApiGestionContratos.entity.PersonaNatural;
+import gov.deajVpar.ApiGestionContratos.entity.RolUsuario;
 import gov.deajVpar.ApiGestionContratos.entity.Usuario;
 import gov.deajVpar.ApiGestionContratos.repository.UsuarioRepository;
 import java.util.List;
@@ -19,8 +21,11 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
+    @Autowired
+    private PersonaService personaService;
 
     public UsuarioService() {
+        
     }
     
     public Usuario save(Usuario usuario){
@@ -31,7 +36,7 @@ public class UsuarioService {
     
     public List<Usuario> getAll(){
         
-        return this.repository.findAll();
+        return this.repository.findByEstado(false);
         
     }
     
@@ -39,6 +44,36 @@ public class UsuarioService {
         
         return this.repository.findById(id);
         
+    }
+    
+    public List<Usuario> getAllByRolUsuario(RolUsuario rol){
+        
+        return this.repository.findByRolUsuarioAndEstado(rol, false);
+        
+    }
+    
+    public Usuario findByUsername(String username){
+        
+        Usuario obj = this.repository.findByUserNameAndEstado(username, false).orElse(null);
+        return obj;
+        
+    }
+    
+    public PersonaNatural getPersonaNatural(PersonaNatural aux){
+        
+        if(aux.getIdPersona()!=null){
+            PersonaNatural persona = (PersonaNatural)this.personaService.findById(aux.getIdPersona()).orElse(null);
+            persona.setFechaNacimiento(aux.getFechaNacimiento());
+            persona.setGenero(aux.getGenero());
+            persona.setNoDocumento(aux.getNoDocumento());
+            persona.setTipoDocumento(aux.getTipoDocumento());
+            persona.setpApellido(aux.getpApellido());
+            persona.setpNombre(aux.getpNombre());
+            persona.setsApellido(aux.getsApellido());
+            persona.setsNombre(aux.getsNombre());
+            return persona;
+        }
+        return aux;
     }
     
     

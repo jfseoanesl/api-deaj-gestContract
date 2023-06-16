@@ -22,7 +22,7 @@ import java.util.List;
 public abstract class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idPersona;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "tipodocumento_id")
     private TipoDocumento tipoDocumento;
@@ -40,7 +40,7 @@ public abstract class Persona {
 
     public Persona(Long idPersona, TipoDocumento tipoDocumento, String noDocumento) {
         this();
-        this.idPersona = idPersona;
+        this.id = idPersona;
         this.tipoDocumento = tipoDocumento;
         this.noDocumento = noDocumento;
         this.eliminado = false;
@@ -57,14 +57,14 @@ public abstract class Persona {
      * @return the idPersona
      */
     public Long getIdPersona() {
-        return idPersona;
+        return id;
     }
 
     /**
      * @param idPersona the idPersona to set
      */
     public void setIdPersona(Long idPersona) {
-        this.idPersona = idPersona;
+        this.id = idPersona;
     }
 
     /**
@@ -92,7 +92,7 @@ public abstract class Persona {
      * @param noDocumento the noDocumento to set
      */
     public void setNoDocumento(String noDocumento) {
-        this.noDocumento = noDocumento;
+        this.noDocumento=noDocumento;
     }
 
     /**
@@ -111,7 +111,22 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", tipoDocumento=" + tipoDocumento + ", noDocumento=" + noDocumento + ", eliminado=" + eliminado + '}';
+        return "Persona{" + "idPersona=" + id + ", tipoDocumento=" + tipoDocumento + ", noDocumento=" + noDocumento + ", eliminado=" + eliminado + '}';
+    }
+
+
+    /**
+     * @return the listContratosSuscritos
+     */
+    public List<Contrato> getListContratosSuscritos() {
+        return listContratosSuscritos;
+    }
+
+    /**
+     * @param listContratosSuscritos the listContratosSuscritos to set
+     */
+    public void setListContratosSuscritos(List<Contrato> listContratosSuscritos) {
+        this.listContratosSuscritos = listContratosSuscritos;
     }
     
     
