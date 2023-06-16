@@ -4,7 +4,9 @@
  */
 package gov.deajVpar.ApiGestionContratos.repository;
 
+import gov.deajVpar.ApiGestionContratos.entity.RolUsuario;
 import gov.deajVpar.ApiGestionContratos.entity.Usuario;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,5 +16,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
-    public Optional<Usuario> findByUserNameAndPassword(String userName, String password);
+    public Optional<Usuario> findByUserNameAndPasswordAndEstado(String userName, String password, boolean estado);
+    public Optional<Usuario> findByUserNameAndEstado(String userName, boolean estado);
+    public List<Usuario> findByEstado(boolean eliminado);
+    public List<Usuario> findByRolUsuarioAndEstado(RolUsuario rol,boolean estado);
 }

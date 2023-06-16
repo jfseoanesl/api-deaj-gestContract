@@ -9,7 +9,7 @@ package gov.deajVpar.ApiGestionContratos.entity;
  * @author Jairo F
  */
 public enum Modulo {
-    ALL,
+    //ALL,
     CONFIGURACION,
     USUARIOS,
     CONTRATOS,

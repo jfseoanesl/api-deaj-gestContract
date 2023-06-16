@@ -11,6 +11,7 @@ import gov.deajVpar.ApiGestionContratos.entity.Modulo;
  * @author Jairo F
  */
 public class PermisoUserDto {
+    private Long id;
     private Modulo modulo;
     private boolean c;
     private boolean u;
@@ -26,6 +27,14 @@ public class PermisoUserDto {
         this.u = u;
         this.d = d;
         this.r = r;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

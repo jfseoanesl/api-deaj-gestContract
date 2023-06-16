@@ -134,7 +134,7 @@ public class PersonaNatural extends Persona {
 
     @Override
     public String toString() {
-        return "PersonaNatural{" + "pNombre=" + pNombre + ", sNombre=" + sNombre + ", pApellido=" + pApellido + ", sApellido=" + sApellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "PersonaNatural{id="+this.getIdPersona() + ", pNombre=" + pNombre + ", sNombre=" + sNombre + ", pApellido=" + pApellido + ", sApellido=" + sApellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
     
     

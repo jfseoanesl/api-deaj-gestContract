@@ -17,10 +17,10 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public abstract class SubModalidadDtoMapper {
 
-    private UserDtoMapper userMapper;
+    private UsuarioDtoMapper userMapper;
 
     public SubModalidadDtoMapper() {
-        this.userMapper = new UserDtoMapperImp();
+        this.userMapper = new UsuarioDtoMapperImp();
     }
 
     public SubModalidadContrato toObj(SubModalidadDto dto) {

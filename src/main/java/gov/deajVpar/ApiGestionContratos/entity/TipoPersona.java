@@ -6,5 +6,6 @@ package gov.deajVpar.ApiGestionContratos.entity;
  */
 public enum TipoPersona {
     NATURAL, JURIDICA;
+
     
 }

@@ -21,7 +21,13 @@ public class LoginService {
     
     public Usuario login(String userName, String password){
             
-           return this.repository.findByUserNameAndPassword(userName, password).orElse(null);
+           return this.repository.findByUserNameAndPasswordAndEstado(userName, password, false).orElse(null);
+           
+    }
+    
+    public Usuario login(String userName){
+            
+           return this.repository.findByUserNameAndEstado(userName, false).orElse(null);
            
     }
 }

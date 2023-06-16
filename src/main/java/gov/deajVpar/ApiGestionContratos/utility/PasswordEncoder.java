@@ -6,6 +6,9 @@ package gov.deajVpar.ApiGestionContratos.utility;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
+
 /**
  *
  * @author Jairo F
@@ -23,5 +26,12 @@ public class PasswordEncoder {
 //        }
 //        return encoder;
 //    }
+    
+    public static boolean verifiedPasswordEncrypted(String password, String bcryptHashString){
+      BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
+      return result.verified;
+    }
+    
+    
     
 }

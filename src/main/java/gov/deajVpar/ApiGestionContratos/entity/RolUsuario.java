@@ -21,17 +21,14 @@ import java.util.List;
 public class RolUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idRol;
+    private Long id;
     @NotBlank
     private String nombreRol;
     @NotNull
     private TipoUsuario tipoUsuario;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PermisoUsuario> listPermisosUsuario;
-//    @OneToOne(mappedBy = "rolUsuario")
-//    private Usuario usuario;
     @OneToOne
-    @JoinColumn(name = "usuario_id")
     private Usuario cratedByUser;
     private boolean eliminado;
     
@@ -59,7 +56,7 @@ public class RolUsuario {
     }
 
     public RolUsuario(Long idRol, String nombreRol, List<PermisoUsuario> listPermisosUsuario, Usuario cratedByUser, boolean eliminado) {
-        this.idRol = idRol;
+        this.id = idRol;
         this.nombreRol = nombreRol;
         this.listPermisosUsuario = listPermisosUsuario;
         this.cratedByUser = cratedByUser;
@@ -69,15 +66,15 @@ public class RolUsuario {
     /**
      * @return the idRol
      */
-    public Long getIdRol() {
-        return idRol;
+    public Long getId() {
+        return id;
     }
 
     /**
      * @param idRol the idRol to set
      */
-    public void setIdRol(Long idRol) {
-        this.idRol = idRol;
+    public void setId(Long idRol) {
+        this.id = idRol;
     }
 
     /**
@@ -91,7 +88,7 @@ public class RolUsuario {
      * @param nombreRol the nombreRol to set
      */
     public void setNombreRol(String nombreRol) {
-        this.setNombreRol(nombreRol);
+        this.nombreRol=nombreRol;
     }
 
     /**
@@ -138,7 +135,7 @@ public class RolUsuario {
 
     @Override
     public String toString() {
-        return "RolUsuario{" + "idRol=" + idRol + ", nombreRol=" + nombreRol + ", listPermisosUsuario=" + listPermisosUsuario + ", cratedByUser=" + cratedByUser + ", eliminado=" + eliminado + '}';
+        return "RolUsuario{" + "id=" + id + ", nombreRol=" + nombreRol + ", listPermisosUsuario=" + listPermisosUsuario + ", cratedByUser=" + cratedByUser + ", eliminado=" + eliminado + '}';
     }
 
     
